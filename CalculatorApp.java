@@ -112,5 +112,21 @@ public class CalculatorApp {
     private static double standardDeviation(double arr[], int n) {
         return sqrt(variance(arr, n));
     }
+    
+    /**
+     * Function that calculates the exponentiation given a base number and power number (for integers)
+     * @param base: base number
+     * @param exp: exponent number
+     * @return exponentiation of base number to the power of exponent number
+     */
+    private static int powerInt (int base, int exp) {
+    	int result = 1;
+    	
+    	for (int i = 0; i < exp; i++) {
+    		result *= base;
+    	}
+    	
+    	return result;
+    }
 
 }

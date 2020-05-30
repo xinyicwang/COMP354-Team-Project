@@ -114,19 +114,22 @@ public class CalculatorApp {
     }
     
     /**
-     * Function that calculates the exponentiation given a base number and power number (for integers)
+     * Function that calculates the exponentiation given a base number and an integer power number
      * @param base: base number
      * @param exp: exponent number
      * @return exponentiation of base number to the power of exponent number
      */
-    private static int powerInt (int base, int exp) {
+    private static double powerInt (double base, int exp) {
     	int result = 1;
     	
     	for (int i = 0; i < exp; i++) {
     		result *= base;
     	}
     	
-    	return result;
+    	if (exp >= 0)
+    		return result;
+    	else
+    		return (1/result);
     }
 
 }

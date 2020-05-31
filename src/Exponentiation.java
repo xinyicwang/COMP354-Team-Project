@@ -1,5 +1,9 @@
 import java.util.*;
 
+import function.EPower;
+import function.NRoot;
+import function.Power;
+
 public class Exponentiation {
 
 	
@@ -30,9 +34,8 @@ public class Exponentiation {
     }
     	
 	public static void main(String[] args) {
-		System.out.println("3^4 = " + powerInt(3,4));
-		System.out.println("25^3 = " + powerInt(25,3));
-		System.out.println("2^-2 = " + powerInt(2,-2));
+		//System.out.println(EPower.ePower(3.0 / 2.0));
+		System.out.println(Power.power(16, 0.5));
 	}
 
 }

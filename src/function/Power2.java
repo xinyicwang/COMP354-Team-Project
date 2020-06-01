@@ -7,7 +7,19 @@ public class Power2 {
 	    
 		public static void main(String[] args) 
 		{
-			System.out.print(power(10, 2.1));
+			double pi = 0;
+			double sign = 1;
+			int limit = 100000000;
+
+			for (int i = 1; i < limit; i+=2)
+			{
+			   pi += sign/i;
+			   sign = -sign;
+			}
+			pi *=4;
+
+			System.out.println(pi);
+			System.out.println(power(pi,100));
 
 		}
 		
@@ -88,7 +100,7 @@ public class Power2 {
 		
 
 		/**
-		 * 
+		 * Approximates the root using Bisection Method
 		 * @param upperRoot: upper bound of the set of numbers that contain the real root
 		 * @param lowerRoot: lower bound of the set of numbers that contain the real root
 		 * @param base: number we are getting the nth root of

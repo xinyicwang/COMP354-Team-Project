@@ -1,7 +1,8 @@
 # COMP354-Team-Project
 
-##Pseudocode
+## Pseudocode
 - square
+```
 input: a double n, a double i, a double j
 output: a double of squared value of n
 
@@ -34,8 +35,10 @@ while not found do:
 end while
 
 return res
+```
 
 - variance
+```
 input: an array of doubles arr, an integer n
 output: a double for the variance of the array arr of length n
 
@@ -53,13 +56,16 @@ for i <- 0 to n do:
 end for
 
 return variance(arr, n)
+```
 
 - standard deviation
+```
 input: an array of doubles arr, an integer n
 output: a double of the square root value for the variance of the array arr of length n
 
 return sqrt(variance(arr, n))
+```
 
 
-##Design Choice
+## Design Choice
 Arraylist was used when prompting for user input, as it is a dynamic data structure and is perfect for storing user input. In our case, user can also decide how many numbers they would like to enter into the calculator, without being restricted by the input size.

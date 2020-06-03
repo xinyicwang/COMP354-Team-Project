@@ -10,10 +10,10 @@ public class Mean {
 	private static double sum(double arr[])
 	{
 		double sum = 0;
-        for(int i = 0; i < arr.length; i++) {
-            sum += arr[i];
-        }
-        return sum;
+        	for(int i = 0; i < arr.length; i++) {
+            		sum += arr[i];
+        	}
+       		return sum;
 	}
 	
 	/**
@@ -34,9 +34,9 @@ public class Mean {
 	            abdiff += abs((arr[i] - mean)) ;
 	        }
 	     
-	     abdiff = (abdiff /n);
+	     abdiff = (abdiff / (double) n);
 	        
-		return abdiff;
+	     return abdiff;
 		
 	}
 

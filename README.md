@@ -15,9 +15,10 @@ else if mult < n do:
   return square(n, mid, j)
 else do:
   return square(n, i, mid)
-
+```
 
 - square root
+```
 input: a double num
 output: a double of the square root value of num
 

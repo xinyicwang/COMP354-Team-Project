@@ -29,4 +29,4 @@ public class Exponentiation {
     		return ((double)1/result);
     }
     	
-}
+} 

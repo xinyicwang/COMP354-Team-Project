@@ -32,7 +32,7 @@ public class Power2 {
 	* @param exp: exponent
 	* @return the result of base multiplied by itself exp times
 	*/
-	public static double power(double base, double exp)
+	private static double power(double base, double exp)
 	{
 		long nthRoot = 1;
 		boolean isNegative = exp < 0;

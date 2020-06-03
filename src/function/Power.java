@@ -31,7 +31,6 @@ public class Power {
 		for(int i = 0 ; i < exponent - 1 ; ++i) {
 			tempPow *= base;
 		}
-		
 		return NRoot.nRoot(tempPow, nRoot);
 	}
 	

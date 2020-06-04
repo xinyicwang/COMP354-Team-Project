@@ -24,7 +24,7 @@ public class CalculatorGUI implements ActionListener {
         CalculatorGUI c = new CalculatorGUI();
     }
     
-    
+    //testing 
     /**
      * Initialize the GUI and all it's components.
      * 

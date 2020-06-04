@@ -39,35 +39,35 @@ public class CalculatorApp {
 		//Test Standard Deviation & MAD
 		System.out.println("==========Testing Standard Deviation and Mean==========");
 		List<Double> nums = new ArrayList<Double>();
-    Scanner sc = new Scanner(System.in);
-    // prompt for user input
-    do {
-	  	System.out.println("Current input is " + nums);
-      System.out.println("Add more? (y/n)");
-      if(sc.next().startsWith("y")) {
-      	System.out.println("Enter: ");
-        nums.add(sc.nextDouble());
-      }
-      else {
-      	break;
-      }
-    } while(true);
+		Scanner sc = new Scanner(System.in);
+		// prompt for user input
+		do {
+			System.out.println("Current input is " + nums);
+			System.out.println("Add more? (y/n)");
+			if(sc.next().startsWith("y")) {
+				System.out.println("Enter: ");
+				nums.add(sc.nextDouble());
+			}
+			else {
+				break;
+			}
+		} while(true);
 
-    sc.close();
-    System.out.println("List is " + nums);
+		sc.close();
+		System.out.println("List is " + nums);
 
 		if (nums.size() != 0) {
-	    // map user input into an array of doubles
-	    double[] doubles = new double[nums.size()];
-	    for(int i = 0; i < doubles.length; i++) {
-	    	doubles[i] = nums.get(i);
-	    }
-	    int n = doubles.length;
-
-	    System.out.println("The standard deviation of " + n + " numbers is "
-									+ StandardDeviation.standardDeviation(doubles, n));
-	    System.out.println("The mean absolute deviation of the numbers is "
-									+ Mean.mad(doubles, n));
+			// map user input into an array of doubles
+			double[] doubles = new double[nums.size()];
+			for(int i = 0; i < doubles.length; i++) {
+				doubles[i] = nums.get(i);
+	   	}
+			int n = doubles.length;
+				
+			System.out.println("The standard deviation of " + n + " numbers is "
+					+ StandardDeviation.standardDeviation(doubles, n));
+			System.out.println("The mean absolute deviation of the numbers is "
+					+ Mean.mad(doubles, n));
 		}
 	}
 

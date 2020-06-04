@@ -1,7 +1,13 @@
 package function;
 
 public class EPower {
-		
+	
+    /**
+     * Function that calculates the exponential of the constant e
+     * @param exponent: exponent number
+     * @return exponential of constant e using Horner's rule to approximate roots
+     */
+
 	public static double ePower(double exponent) {
         
 		// N is a random number to get the right precision.

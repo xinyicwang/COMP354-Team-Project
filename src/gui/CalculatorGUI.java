@@ -32,7 +32,7 @@ public class CalculatorGUI implements ActionListener {
     public CalculatorGUI() {
         
     
-        JFrame frame = new JFrame("Calculator App");
+        JFrame frame = new JFrame("Transcendental Function Calculator");
         frame.setSize(300,300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         

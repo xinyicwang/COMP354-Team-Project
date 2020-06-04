@@ -1,8 +1,5 @@
 import java.util.*;
 
-import function.EPower;
-import function.NRoot;
-import function.Power;
 import function.Power2;
 import function.Exponentiation;
 import function.StandardDeviation;
@@ -13,11 +10,10 @@ public class CalculatorApp {
 
 	public static void main(String[] args) {
 		
-		System.out.println("3^4 = " + Exponentiation.powerInt(3,4));
+		System.out.println("3^4 = " + Exponentiation.powerInt(3,4.5));
 		System.out.println("25^3 = " + Exponentiation.powerInt(25,3));
-		System.out.println("2^-2 = " + Exponentiation.powerInt(2,-2));
-		//System.out.println(EPower.ePower(3.0 / 2.0));
-		System.out.println(Power.power(16, 0.5));
+		System.out.println("-2^5 = " + Exponentiation.powerInt(-2,5));
+		System.out.println("2^-2 = " + Exponentiation.powerInt(2,-2.5));
 				
 		List<Double> nums = new ArrayList<Double>();
         Scanner sc = new Scanner(System.in);

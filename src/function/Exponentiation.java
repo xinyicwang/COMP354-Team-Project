@@ -10,14 +10,17 @@ public class Exponentiation {
      * @return exponentiation of base number to the power of exponent number
      */
 	
-    public static double powerInt (double base, int exp) {
+    public static double powerInt (double base, double exp) {
     	int result = 1;
-    	char sign = 'p';
+    	char sign = 'p'; 	
     	
     	if (exp < 0) {
     		exp *= -1;
     		sign = 'n';
     	}
+    	
+    	double remainder = exp % 1;
+    	exp = exp - remainder;
     		
     	for (int i = 0; i < exp; i++) {
     		result *= base;

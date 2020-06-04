@@ -1,8 +1,6 @@
 import java.util.*;
 
-import function.EPower;
-import function.NRoot;
-import function.Power;
+import function.Power2;
 
 public class Exponentiation {
 
@@ -35,9 +33,12 @@ public class Exponentiation {
     	
 	public static void main(String[] args) {
 		//System.out.println(EPower.ePower(3.0 / 2.0));
-		System.out.println(Power.power(16, 0.5));
+		//System.out.println(Power.power(16, 0.5));
 		
-		System.out.println(EPower.ePower(0.5));
+		//System.out.println(EPower.ePower(0.5));
+		//System.out.println(Power2.powersOfPi(10));
+		//System.out.println(Power2.powersOfPi(10));
+
 
 	}
 

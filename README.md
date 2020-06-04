@@ -96,3 +96,13 @@ else
 Arraylist was used when prompting for user input, as it is a dynamic data structure and is perfect for storing user input. In our case, user can also decide how many numbers they would like to enter into the calculator, without being restricted by the input size.
 
 Exponentiation currently round down all decimal numbers, where future interations will focus on improving handling decimal numbers.
+
+## Pseudocode e^x
+1. Exp-Horner(x,n) 	n indicates how many terms to calculate up to
+2. P_n = 1 + x/n
+3. for i = 1 to n - 1
+4.    P_n = 1 + x/(n-i)P_n
+5. return P_n
+
+1. Exp(x)
+2.   return Exp-Horner(x,1000)     n = 1000 gives good accuracy

@@ -7,16 +7,18 @@ public class Power2 {
 	    
 		public static void main(String[] args) 
 		{
-			double pi = 0;
+			double protoPi = 0; /*Renamed the variable because having pi = 0 just seems cursed*/
 			double sign = 1;
-			int limit = 100000000;
+			int limit = 100000000; /*It might be necessary to calculate a stopping point from a given episolon*/
 
 			for (int i = 1; i < limit; i+=2)
 			{
-			   pi += sign/i;
+			   protoPi += sign/i;
 			   sign = -sign;
 			}
-			pi *=4;
+			protoPi *=4;
+			
+			double pi = protoPi;
 
 			System.out.println(pi);
 			System.out.println(power(pi,100));
@@ -32,14 +34,21 @@ public class Power2 {
 		 */
 		public static double power(double base, double exp)
 		{
+			/* To further generalise, make it check if base is negative, 
+			 * and exp is non integer 
+			 * (can't take the root of a negative number) 
+			 * */
+			
 			long nthRoot = 1;
 			boolean isNegative = exp < 0;
 			
 			exp = isNegative ? exp*(-1) : exp;
 
-			//checks if the exponent is not an integer
-			//if not, multiplies by 10 until it is, resulting in a fraction of 
-			//exp/nthRoot being the new exponent
+			/*
+			 * checks if the exponent is not an integer
+			 * if not, multiplies by 10 until it is, resulting in a fraction of 
+			 * exp/nthRoot being the new exponent
+			 */
 			while (exp%1 != 0)
 			{
 				nthRoot *= 10;

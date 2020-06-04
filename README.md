@@ -103,6 +103,6 @@ Exponentiation currently round down all decimal numbers, where future interation
 3. for i = 1 to n - 1
 4.    P_n = 1 + x/(n-i)P_n
 5. return P_n
-
+```
 1. Exp(x)
 2.   return Exp-Horner(x,1000)     n = 1000 gives good accuracy

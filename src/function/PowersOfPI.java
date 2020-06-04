@@ -7,7 +7,7 @@ public class PowersOfPI {
 		/**
 		 * Function that calculates pi^x
 		 * @param exp: exponent
-     * @return pi raised to the power of exp
+		 * @return pi raised to the power of exp
 		 */
 		public static double powersOfPi(double exp)
 		{

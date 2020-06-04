@@ -8,6 +8,8 @@
  */
 package gui;
 
+import function.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -246,6 +248,7 @@ public class CalculatorGUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         String text = numberInput.getText();
+        
         boolean isNumeric = true;
         try {
             int i = Integer.parseInt(command);
@@ -257,7 +260,9 @@ public class CalculatorGUI implements ActionListener {
             numberInput.setText(text+command);
             return;
         }
-        
+        if(text.equals("")) {
+        	text = "0";
+        }
         if (command.equals(".")) {
         	if(!text.contains(".")) {
         		numberInput.setText(text+command);
@@ -271,15 +276,15 @@ public class CalculatorGUI implements ActionListener {
         }
 
         if (command.equals("ecalc")) {
-        	float num = Float.parseFloat(text);
-        	float res = this.performeCalc(num);
+        	double num = Double.parseDouble(text);
+        	double res = EPower.ePower(num);
         	numberInput.setText(res+"");
             return;
         }
         
         if (command.equals("picalc")) {
-        	float num = Float.parseFloat(text);
-        	float res = this.performPiCalc(num);
+        	double num = Double.parseDouble(text);
+        	double res = PowersOfPI.powersOfPi(num);
         	numberInput.setText(res+"");
             return;
         }

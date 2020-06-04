@@ -50,7 +50,8 @@ public class PowersOfPI {
 				nthRoot *= 10;
 				exp *= nthRoot;
 			}
-
+			/* Leads to errors when dealing with powers of numbers with a lot of decimal places (pi^pi for example)*/
+			
 			base = root(base, nthRoot);
 
 			double powerResult = 1;

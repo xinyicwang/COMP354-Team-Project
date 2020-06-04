@@ -101,7 +101,7 @@ Exponentiation currently round down all decimal numbers, where future interation
 1. Exp-Horner(x,n) 	n indicates how many terms to calculate up to
 2. P_n = 1 + x/n
 3. for i = 1 to n - 1
-4.    P_n = 1 + x/(n-i)P_n
+4.   P_n = 1 + x/(n-i)P_n
 5. return P_n
 ```
 1. Exp(x)

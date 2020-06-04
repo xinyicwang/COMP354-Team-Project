@@ -2,7 +2,7 @@ package function;
 
 public class PowersOfPI {
 
-	 static final double EPSILON = 0.000001;
+	 static final double EPSILON = 0.000000001;
 
 		/**
 		 * Function that calculates pi^x

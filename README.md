@@ -106,3 +106,46 @@ Exponentiation currently round down all decimal numbers, where future interation
 ```
 1. Exp(x)
 2.   return Exp-Horner(x,1000)     n = 1000 gives good accuracy
+```
+## Pseudo code Mean Absolute Deviation (MAD)
+
+ - sum
+```
+input: an array of doubles arr
+output: the sum of the numbers in the array arr
+
+sum <- 0
+
+for i <-0 to n do:
+  sum = sum + arr[i]
+end for
+
+return sum
+```
+ - absolute
+```
+input: a number n
+output: positive n
+
+if n < 0 
+  return -n
+else 
+  return n
+end if
+```
+ - mean absolute deviation
+```
+input: an array of doubles arr and an integer n
+output: the mean absolute deviation of the array arr of length n
+
+mean <- sum(arr) / n
+abdiff <- 0
+
+for i <- 0 to n do:
+  abdiff = abdiff + abs(arr[i] - mean);
+end for
+
+abdiff = abdiff / n
+
+return abdiff
+```

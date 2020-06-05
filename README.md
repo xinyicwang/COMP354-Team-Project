@@ -107,7 +107,7 @@ Exponentiation currently round down all decimal numbers, where future interation
 1. Exp(x)
 2.   return Exp-Horner(x,1000)     n = 1000 gives good accuracy
 ```
-## Pseudo code Mean Absolute Deviation (MAD)
+## Pseudocode Mean Absolute Deviation (MAD)
 
  - sum
 ```

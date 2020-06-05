@@ -47,20 +47,17 @@ public class PowersOfPI {
 			// exp/nthRoot being the new exponent
 			while (exp%1 != 0)
 			{
+				exp *= 10;
 				nthRoot *= 10;
-				exp *= nthRoot;
 			}
 			/* Leads to errors when dealing with powers of numbers with a lot of decimal places (pi^pi for example)*/
 			
 			base = root(base, nthRoot);
 
 			double powerResult = 1;
+			long newExp = (long) exp;
 
-			for (int i = 0; i < exp; i++)
-			{
-				powerResult *= base;
-			}
-
+			powerResult = quickPower(base, newExp);
 			return isNegative ? 1/powerResult : powerResult;
 		}
 
@@ -72,7 +69,7 @@ public class PowersOfPI {
 		 * to result the base
 		 * @return the nth root of the base
 		 */
-		private static double root(double base, double nthRoot)
+		private static double root(double base, long nthRoot)
 		{
 		    if (nthRoot == 1)
 		    {
@@ -86,10 +83,7 @@ public class PowersOfPI {
 
 		    for (double root = 1; baseApproximation < base; root++)
 		    {
-		        for (int i = 0; i < nthRoot; i++)
-	            {
-	                baseApproximation *= root;
-	            }
+		    	baseApproximation *= quickPower(root, nthRoot);
 
 	            if (baseApproximation == base)
 	            {
@@ -115,19 +109,17 @@ public class PowersOfPI {
 		 * @return an approximation of the root
 		 */
 		private static double bisectionMethod(double upperRoot, double lowerRoot,
-		                                        double base, double nthRoot)
+		                                        double base, long nthRoot)
 		{
 		    double estimatedRoot = 1;
+		    long count = 0;
 
-		    while (upperRoot - lowerRoot > EPSILON)
+		    while (upperRoot - lowerRoot > EPSILON || count < 100000)
 		    {
 		        double middleBaseApproximation = 1;
 		        double middleRoot = (upperRoot + lowerRoot)/2;
 
-		        for (int i = 0; i < nthRoot; i++)
-	            {
-	                middleBaseApproximation  *= middleRoot;
-	            }
+		        middleBaseApproximation = quickPower(middleRoot, nthRoot);
 
 	            if (middleBaseApproximation > base)
 	            {
@@ -139,9 +131,37 @@ public class PowersOfPI {
 	            }
 
 	            estimatedRoot = middleRoot;
+	            count++;
 		    }
 
 		    return estimatedRoot;
 		}
+		
+		/**
+		 * Calculated the power in O(logn) time
+		 * Adapted code from: https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+		 * @param base: base of the power
+		 * @param exp: exponent 
+		 * @return the power of base to the exponent
+		 */
+		private static double quickPower(double base, long exp) 
+	    { 
+	        double temp; 
+	        if( exp == 0) 
+	        {
+	            return 1; 
+	        }
+	        temp = quickPower(base, exp/2);  
+	          
+	        if (exp%2 == 0) 
+	        {
+	            return temp*temp; 
+	        }
+	        else
+	        { 
+	            return base * temp * temp; 
+	        } 
+	    }  
+
 
 }

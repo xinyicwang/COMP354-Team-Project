@@ -17,22 +17,22 @@ public class CalculatorApp {
 		System.out.println("-2^5 = " + Exponentiation.powerInt(-2,5));
 		System.out.println("2^-2 = " + Exponentiation.powerInt(2,-2.5));
 		System.out.println("\n");
-
+		System.out.println(Math.pow(Math.E,100));
 
 		// Test e^x
 		System.out.println("==========Testing e^x==========");
-		System.out.println("Testing with a small integer number: e^20: " + EPower.ePower(20));
-		System.out.println("Testing with a large integer number: e^100: " + EPower.ePower(100));
-		System.out.println("Testing with decimal number: e^0.5: " + EPower.ePower(0.5));
-		System.out.println("Testing with a negative integer number: e^(-2.5): " + EPower.ePower(-2.5));
+		System.out.println("Testing with a small integer number: e^20 = " + EPower.ePower(20));
+		System.out.println("Testing with a large integer number: e^100 = " + EPower.ePower(100));
+		System.out.println("Testing with decimal number: e^0.5 = " + EPower.ePower(0.5));
+		System.out.println("Testing with a negative integer number: e^(-2.5) = " + EPower.ePower(-2.5));
 		System.out.println("\n");
 		
 		
 		//Test pi^x
 		System.out.println("==========Testing pi^x==========");
-		System.out.println(PowersOfPI.powersOfPi(1));
-		System.out.println(PowersOfPI.powersOfPi(2.1));
-		System.out.println(PowersOfPI.powersOfPi(-1));
+		System.out.println("pi^1 = " + PowersOfPI.powersOfPi(1));
+		System.out.println("pi^(2.1) = " + PowersOfPI.powersOfPi(2.1));
+		System.out.println("pi^(-1) = " + PowersOfPI.powersOfPi(-1));
 		System.out.println("\n");
 
 		

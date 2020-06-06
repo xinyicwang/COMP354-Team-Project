@@ -125,7 +125,7 @@ abdiff = abdiff / n
 return abdiff
 ```
 
-## π^x
+## π<sup>x</sup>
  - powersOfPi
 ```
 Input: a double exp
@@ -234,4 +234,4 @@ else do:
 ```
 
 ## Data Structures
-For the function pi^x, no data structures were needed. In order to create this function, power; nthRoot; and bisection method functions were made. Since an iterative approach was taken, previous values stored were replaced, thus making variables sufficient. 
+For the function π<sup>x</sup>, no data structures were needed. In order to create this function, power; nthRoot; and bisection method functions were made. Since an iterative approach was taken, previous values stored were replaced, thus making variables sufficient. 

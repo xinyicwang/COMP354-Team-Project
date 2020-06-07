@@ -2,10 +2,22 @@ package function;
 
 public class Mean {
 
+	/**
+	* Function that calculates the absolute value of a number
+     	* @param num: a number of type double
+     	* @return the absolute value of number n
+	*/
+	
 	private static double abs(double num)
 	{
 		return (num <0) ? -num : num;
 	}
+	
+	/**
+	 * function that calculates the sum of an array consisting of doubles
+	 * @param arr: array of doubles
+	 * @return sum of the doubles inside the array
+	 */
 		
 	private static double sum(double arr[])
 	{
@@ -17,11 +29,11 @@ public class Mean {
 	}
 	
 	/**
-     * Function that calculates the mean absolute deviation of an array of numbers
-     * @param arr: array of doubles
-     * @param n: length of the array
-     * @return the mean absolute deviation of the array
-     */
+    	* Function that calculates the mean absolute deviation of an array of numbers
+     	* @param arr: array of doubles
+     	* @param n: length of the array
+     	* @return the mean absolute deviation of the array
+     	*/
 		
 	public static double mad(double arr[], int n)
 	{

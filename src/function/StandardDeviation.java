@@ -2,7 +2,7 @@ package function;
 
 public class StandardDeviation {
 
-    /**
+    /** 
      * Function that calculates the absolute value of a number
      * @param num: a number of type double
      * @return the absolute value of number n

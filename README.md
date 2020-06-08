@@ -93,7 +93,7 @@ return pN
 ## Design Choice
 No data structures were used.
 
-## Absolute Deviation (MAD)
+## Mean Absolute Deviation (MAD)
 
  - sum
 ```
@@ -135,6 +135,8 @@ abdiff = abdiff / n
 
 return abdiff
 ```
+## Design Choice
+An Arraylist was used for this function. This dynamic data structure is perfect for storing the user inputs. Users will be able to decide how many numbers they would like to enter into the calculator, without being restricted by the input size.
 
 ## π<sup>x</sup>
  - powersOfPi

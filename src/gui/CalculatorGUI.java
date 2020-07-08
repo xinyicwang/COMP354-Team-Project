@@ -234,6 +234,23 @@ public class CalculatorGUI implements ActionListener {
         buttonPiCalc.setActionCommand("picalc");
         
         
+        JButton buttonPowCalc = new JButton("x^x");
+        GridBagConstraints powCalcConstraints = new GridBagConstraints();
+        powCalcConstraints.gridheight = 1;
+        powCalcConstraints.gridwidth = 1;
+        powCalcConstraints.gridx = 3;
+        powCalcConstraints.gridy = 4;
+        powCalcConstraints.weightx = 1.0;
+        powCalcConstraints.weighty = 1.0;
+        powCalcConstraints.fill = GridBagConstraints.BOTH;
+        frame.getContentPane().add(buttonPowCalc,powCalcConstraints);
+        buttonPowCalc.addActionListener(this);
+        buttonPowCalc.setActionCommand("powcalc");
+        
+        
+        
+        
+        
         frame.pack();
         frame.setVisible(true);
     }

@@ -14,14 +14,39 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class CalculatorGUI implements ActionListener {
 
+	
+	ArrayList<Double> inputs;
+	EquationValue equation;
+	
+	ArrayList<JButton> functionButtons;
+	
+	enum EquationType{
+		NONE,ONE,TWO,MULTI
+	}
+	
+	enum EquationValue{
+		SIN(0),E(1),PI(2),POW(3),MAD(4),STDEV(5);
+		private final int value;
+	    private EquationValue(int value) {
+	        this.value = value;
+	    }
+
+	    public int getValue() {
+	        return value;
+	    }
+	}
+	
     JTextField numberInput;
     
     public static void main(String[] args) {
         
         CalculatorGUI c = new CalculatorGUI();
+        
+        
     }
     
     /**
@@ -30,7 +55,10 @@ public class CalculatorGUI implements ActionListener {
      */
     public CalculatorGUI() {
         
-    
+    	inputs = new ArrayList<Double>();
+    	functionButtons = new ArrayList<JButton>();
+    	
+    	
         JFrame frame = new JFrame("Transcendental Function Calculator");
         frame.setSize(300,300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +71,7 @@ public class CalculatorGUI implements ActionListener {
         numberInput = new JTextField("");
         GridBagConstraints inputConstraints = new GridBagConstraints();
         inputConstraints.gridheight = 1;
-        inputConstraints.gridwidth = 4;
+        inputConstraints.gridwidth = 6;
         inputConstraints.gridx = 0;
         inputConstraints.gridy = 0;
         inputConstraints.weightx = 1.0;
@@ -51,201 +79,29 @@ public class CalculatorGUI implements ActionListener {
         inputConstraints.fill = GridBagConstraints.BOTH;
         frame.getContentPane().add(numberInput,inputConstraints); 
         
-        JButton buttonNumber7 = new JButton("7");
-        GridBagConstraints numberConstraints7 = new GridBagConstraints();
-        numberConstraints7.gridheight = 1;
-        numberConstraints7.gridwidth = 1;
-        numberConstraints7.gridx = 0;
-        numberConstraints7.gridy = 1;
-        numberConstraints7.weightx = 1.0;
-        numberConstraints7.weighty = 1.0;
-        numberConstraints7.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber7,numberConstraints7); 
-        buttonNumber7.addActionListener(this);
-        buttonNumber7.setActionCommand("7");
+        this.makeButton(0, 1, "7", "7", frame);
+        this.makeButton(1, 1, "8", "8", frame);
+        this.makeButton(2, 1, "9", "9", frame);
+        this.makeButton(0, 2, "4", "4", frame);
+        this.makeButton(1, 2, "5", "5", frame);
+        this.makeButton(2, 2, "6", "6", frame);
+        this.makeButton(0, 3, "1", "1", frame);
+        this.makeButton(1, 3, "2", "2", frame);
         
-        JButton buttonNumber8 = new JButton("8");
-        GridBagConstraints numberConstraints8 = new GridBagConstraints();
-        numberConstraints8.gridheight = 1;
-        numberConstraints8.gridwidth = 1;
-        numberConstraints8.gridx = 1;
-        numberConstraints8.gridy = 1;
-        numberConstraints8.weightx = 1.0;
-        numberConstraints8.weighty = 1.0;
-        numberConstraints8.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber8,numberConstraints8); 
-        buttonNumber8.addActionListener(this);
-        buttonNumber8.setActionCommand("8"); 
-        
-        JButton buttonNumber9 = new JButton("9");
-        GridBagConstraints numberConstraints9 = new GridBagConstraints();
-        numberConstraints9.gridheight = 1;
-        numberConstraints9.gridwidth = 1;
-        numberConstraints9.gridx = 2;
-        numberConstraints9.gridy = 1;
-        numberConstraints9.weightx = 1.0;
-        numberConstraints9.weighty = 1.0;
-        numberConstraints9.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber9,numberConstraints9); 
-        buttonNumber9.addActionListener(this);
-        buttonNumber9.setActionCommand("9");
-        
-        JButton buttonNumber4 = new JButton("4");
-        GridBagConstraints numberConstraints4 = new GridBagConstraints();
-        numberConstraints4.gridheight = 1;
-        numberConstraints4.gridwidth = 1;
-        numberConstraints4.gridx = 0;
-        numberConstraints4.gridy = 2;
-        numberConstraints4.weightx = 1.0;
-        numberConstraints4.weighty = 1.0;
-        numberConstraints4.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber4,numberConstraints4);
-        buttonNumber4.addActionListener(this);
-        buttonNumber4.setActionCommand("4");
-        
-        JButton buttonNumber5 = new JButton("5");
-        GridBagConstraints numberConstraints5 = new GridBagConstraints();
-        numberConstraints5.gridheight = 1;
-        numberConstraints5.gridwidth = 1;
-        numberConstraints5.gridx = 1;
-        numberConstraints5.gridy = 2;
-        numberConstraints5.weightx = 1.0;
-        numberConstraints5.weighty = 1.0;
-        numberConstraints5.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber5,numberConstraints5);
-        buttonNumber5.addActionListener(this);
-        buttonNumber5.setActionCommand("5");
-        
-        JButton buttonNumber6 = new JButton("6");
-        GridBagConstraints numberConstraints6 = new GridBagConstraints();
-        numberConstraints6.gridheight = 1;
-        numberConstraints6.gridwidth = 1;
-        numberConstraints6.gridx = 2;
-        numberConstraints6.gridy = 2;
-        numberConstraints6.weightx = 1.0;
-        numberConstraints6.weighty = 1.0;
-        numberConstraints6.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber6,numberConstraints6);
-        buttonNumber6.addActionListener(this);
-        buttonNumber6.setActionCommand("6");
-        
-        JButton buttonNumber1 = new JButton("1");
-        GridBagConstraints numberConstraints1 = new GridBagConstraints();
-        numberConstraints1.gridheight = 1;
-        numberConstraints1.gridwidth = 1;
-        numberConstraints1.gridx = 0;
-        numberConstraints1.gridy = 3;
-        numberConstraints1.weightx = 1.0;
-        numberConstraints1.weighty = 1.0;
-        numberConstraints1.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber1,numberConstraints1);
-        buttonNumber1.addActionListener(this);
-        buttonNumber1.setActionCommand("1");
-        
-        JButton buttonNumber2 = new JButton("2");
-        GridBagConstraints numberConstraints2 = new GridBagConstraints();
-        numberConstraints2.gridheight = 1;
-        numberConstraints2.gridwidth = 1;
-        numberConstraints2.gridx = 1;
-        numberConstraints2.gridy = 3;
-        numberConstraints2.weightx = 1.0;
-        numberConstraints2.weighty = 1.0;
-        numberConstraints2.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber2,numberConstraints2);
-        buttonNumber2.addActionListener(this);
-        buttonNumber2.setActionCommand("2");
-
-        JButton buttonNumber3 = new JButton("3");
-        GridBagConstraints numberConstraints3 = new GridBagConstraints();
-        numberConstraints3.gridheight = 1;
-        numberConstraints3.gridwidth = 1;
-        numberConstraints3.gridx = 2;
-        numberConstraints3.gridy = 3;
-        numberConstraints3.weightx = 1.0;
-        numberConstraints3.weighty = 1.0;
-        numberConstraints3.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber3,numberConstraints3);
-        buttonNumber3.addActionListener(this);
-        buttonNumber3.setActionCommand("3");
-        
-        JButton buttonNumber0 = new JButton("0");
-        GridBagConstraints numberConstraints0 = new GridBagConstraints();
-        numberConstraints0.gridheight = 1;
-        numberConstraints0.gridwidth = 2;
-        numberConstraints0.gridx = 0;
-        numberConstraints0.gridy = 4;
-        numberConstraints0.weightx = 1.0;
-        numberConstraints0.weighty = 1.0;
-        numberConstraints0.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonNumber0,numberConstraints0);
-        buttonNumber0.addActionListener(this);
-        buttonNumber0.setActionCommand("0");
-        
-        JButton buttonDot = new JButton(".");
-        GridBagConstraints numberConstraintsdot = new GridBagConstraints();
-        numberConstraintsdot.gridheight = 1;
-        numberConstraintsdot.gridwidth = 1;
-        numberConstraintsdot.gridx = 2;
-        numberConstraintsdot.gridy = 4;
-        numberConstraintsdot.weightx = 1.0;
-        numberConstraintsdot.weighty = 1.0;
-        numberConstraintsdot.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonDot,numberConstraintsdot);
-        buttonDot.addActionListener(this);
-        buttonDot.setActionCommand(".");
-
-        JButton buttonClear = new JButton("Clear");
-        GridBagConstraints clearConstraints = new GridBagConstraints();
-        clearConstraints.gridheight = 1;
-        clearConstraints.gridwidth = 1;
-        clearConstraints.gridx = 3;
-        clearConstraints.gridy = 1;
-        clearConstraints.weightx = 1.0;
-        clearConstraints.weighty = 1.0;
-        clearConstraints.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonClear,clearConstraints);
-        buttonClear.addActionListener(this);
-        buttonClear.setActionCommand("clear");
-        
-        JButton buttoneCalc = new JButton("e^x");
-        GridBagConstraints eCalcConstraints = new GridBagConstraints();
-        eCalcConstraints.gridheight = 1;
-        eCalcConstraints.gridwidth = 1;
-        eCalcConstraints.gridx = 3;
-        eCalcConstraints.gridy = 2;
-        eCalcConstraints.weightx = 1.0;
-        eCalcConstraints.weighty = 1.0;
-        eCalcConstraints.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttoneCalc,eCalcConstraints);
-        buttoneCalc.addActionListener(this);
-        buttoneCalc.setActionCommand("ecalc");
-        
-        JButton buttonPiCalc = new JButton("π^x");
-        GridBagConstraints piCalcConstraints = new GridBagConstraints();
-        piCalcConstraints.gridheight = 1;
-        piCalcConstraints.gridwidth = 1;
-        piCalcConstraints.gridx = 3;
-        piCalcConstraints.gridy = 3;
-        piCalcConstraints.weightx = 1.0;
-        piCalcConstraints.weighty = 1.0;
-        piCalcConstraints.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonPiCalc,piCalcConstraints);
-        buttonPiCalc.addActionListener(this);
-        buttonPiCalc.setActionCommand("picalc");
+        this.makeButton(2, 3, "3", "3", frame);
+        this.makeButton(0, 4, "0", "0", frame,1,2);
+        this.makeButton(2, 4, ".", ".", frame);
+        this.makeButton(3, 1,"clear","Clear",frame,1,2);
+        this.makeButton(5, 1,"ce","CE",frame);
+        functionButtons.add(EquationValue.E.value, this.makeButton(3, 2, "ecalc", "e^x", frame));
+        functionButtons.add(EquationValue.PI.value, this.makeButton(3, 3, "picalc", "π^x", frame));
+        functionButtons.add(EquationValue.POW.value, this.makeButton(4, 3, "powcalc", "x^y", frame));
+        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 3, "sincalc", "sin(x)", frame));
+        functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "stdcalc", "stdev", frame));
+        functionButtons.add(EquationValue.MAD.value, this.makeButton(5, 2, "madcalc", "MAD", frame));
+        this.makeButton(3, 4, "equals", "=", frame);
         
         
-        JButton buttonPowCalc = new JButton("x^x");
-        GridBagConstraints powCalcConstraints = new GridBagConstraints();
-        powCalcConstraints.gridheight = 1;
-        powCalcConstraints.gridwidth = 1;
-        powCalcConstraints.gridx = 3;
-        powCalcConstraints.gridy = 4;
-        powCalcConstraints.weightx = 1.0;
-        powCalcConstraints.weighty = 1.0;
-        powCalcConstraints.fill = GridBagConstraints.BOTH;
-        frame.getContentPane().add(buttonPowCalc,powCalcConstraints);
-        buttonPowCalc.addActionListener(this);
-        buttonPowCalc.setActionCommand("powcalc");
         
         
         
@@ -254,7 +110,47 @@ public class CalculatorGUI implements ActionListener {
         frame.pack();
         frame.setVisible(true);
     }
+    
+    private JButton makeButton(int x,int y,String actionName,String label, JFrame frame) {
+    
+    	return this.makeButton(x, y, actionName, label, frame,1,1);
+    }
+    
+    private void disableOtherFunctionButtons(EquationValue eq) {
+    	int val = eq.value;
+    	for (int i = 0; i < functionButtons.size(); i++) {
+            if(i != val) {
+            	functionButtons.get(i).setEnabled(false);
+            }
+        }
+    	
+    	
+    }
+    
+    private void enableAllFunctionButtons() {
+    	for (int i = 0; i < functionButtons.size(); i++) {
+            
+            	functionButtons.get(i).setEnabled(true);
+            
+        }
+    }
 
+    private JButton makeButton(int x,int y,String actionName,String label, JFrame frame,int height, int width) {
+    	JButton myButton = new JButton(label);
+        GridBagConstraints myConstraints = new GridBagConstraints();
+        myConstraints.gridheight = height;
+        myConstraints.gridwidth = width;
+        myConstraints.gridx = x;
+        myConstraints.gridy = y;
+        myConstraints.weightx = 1.0;
+        myConstraints.weighty = 1.0;
+        myConstraints.fill = GridBagConstraints.BOTH;
+        frame.getContentPane().add(myButton,myConstraints);
+        myButton.addActionListener(this);
+        myButton.setActionCommand(actionName);
+        return myButton;
+    }
+    
     
     /**
      * Function called when a button is pressed. Determines which button is pressed, and either 
@@ -279,45 +175,70 @@ public class CalculatorGUI implements ActionListener {
         if(text.equals("")) {
         	text = "0";
         }
-        if (command.equals(".")) {
-        	if(!text.contains(".")) {
-        		numberInput.setText(text+command);
-        	}
-            return;
-        }
         
-        if (command.equals("clear")) {
-        	numberInput.setText("");
-            return;
-        }
-
-        if (command.equals("ecalc")) {
-        	double num = Double.parseDouble(text);
-        	double res = EPower.ePower(num);
-        	numberInput.setText(res+"");
-            return;
-        }
         
-        if (command.equals("picalc")) {
-        	double num = Double.parseDouble(text);
-        	double res = PowersOfPI.powersOfPi(num);
-        	numberInput.setText(res+"");
-            return;
+        
+        
+        EquationType eq = EquationType.NONE;
+        MultiVariableEquation multiEquation = null;
+        TwoVariableEquation twoEquation = null;
+        OneVariableEquation singleEquation = null;
+        switch(command) {
+        
+        	case ".":
+            	if(!text.contains(".")) {
+            		numberInput.setText(text+command);
+            	}
+        		break;
+        	case "clear":
+            	numberInput.setText("");
+        		break;
+        	case "ecalc":
+        		eq = EquationType.ONE;
+        		singleEquation = new DummySingleVariableEquation();
+        		break;
+        	case "picalc":
+        		eq = EquationType.ONE;
+        		singleEquation = new DummySingleVariableEquation();
+        		break;
+        	case "sincalc":
+        		eq = EquationType.ONE;
+        		singleEquation = new DummySingleVariableEquation();
+        		break;
+        	case "powcalc":
+        		eq = EquationType.TWO;
+        		twoEquation = new DummyTwoVariableEquation();
+        		break;
+        	case "stdcalc":
+        		eq = EquationType.MULTI;
+        		multiEquation = new DummyMultiVariableEquation();
+        		break;
+        	case "madcalc":
+        		eq = EquationType.MULTI;
+        		multiEquation = new DummyMultiVariableEquation();
+        	
+        	
         }
+        double num = Double.parseDouble(text);
+        double res = num;
+	    switch(eq) {
+	        case NONE:
+	        	return;
+	        case ONE:
+            	res = singleEquation.calculate(num);
+	        	break;
+	        case TWO:
+	        	break;
+	        case MULTI:
+	        	break;
+	        
+        }
+	    numberInput.setText(res+"");
+        
+        
+        
     }
     
-    private float performeCalc(float input) {
-    	/* TODO: Redirect to class file. Implement function */
-    	
-    	return input / 2;
-    	
-    }
     
-    private float performPiCalc(float input) {
-    	/* TODO: Redirect to class file. Implement function */
-    	
-    	return input * 2;
-    	
-    }
 
 }

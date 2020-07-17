@@ -21,6 +21,7 @@ public class CalculatorGUI implements ActionListener {
 	
 	ArrayList<Double> inputs;
 	EquationValue equation;
+	ArrayList<Symbol> symbolinput;
 	
 	ArrayList<JButton> functionButtons;
 	
@@ -29,7 +30,7 @@ public class CalculatorGUI implements ActionListener {
 	}
 	
 	enum EquationValue{
-		SIN(0),E(1),PI(2),POW(3),MAD(4),STDEV(5);
+		E(0),PI(1),POW(2),SIN(3),STDEV(4),MAD(5);
 		private final int value;
 	    private EquationValue(int value) {
 	        this.value = value;
@@ -39,6 +40,8 @@ public class CalculatorGUI implements ActionListener {
 	        return value;
 	    }
 	}
+	
+	
 	
     JTextField numberInput;
     
@@ -53,6 +56,9 @@ public class CalculatorGUI implements ActionListener {
      * Initialize the GUI and all it's components.
      * 
      */
+    
+    
+    
     public CalculatorGUI() {
         
     	inputs = new ArrayList<Double>();
@@ -91,14 +97,18 @@ public class CalculatorGUI implements ActionListener {
         this.makeButton(2, 3, "3", "3", frame);
         this.makeButton(0, 4, "0", "0", frame,1,2);
         this.makeButton(2, 4, ".", ".", frame);
-        this.makeButton(3, 1,"clear","Clear",frame,1,2);
-        this.makeButton(5, 1,"ce","CE",frame);
-        functionButtons.add(EquationValue.E.value, this.makeButton(3, 2, "ecalc", "e^x", frame));
+        this.makeButton(3, 1,"clear","Clear",frame);
+        this.makeButton(3, 2,"back","Del",frame);
+        this.makeButton(4, 4,"comma",",",frame);
+        this.makeButton(4, 1,"oparen","(",frame);
+        this.makeButton(5, 1,"cparen",")",frame);
+        functionButtons.add(EquationValue.E.value, this.makeButton(4, 3, "ecalc", "e^x", frame));
         functionButtons.add(EquationValue.PI.value, this.makeButton(3, 3, "picalc", "π^x", frame));
-        functionButtons.add(EquationValue.POW.value, this.makeButton(4, 3, "powcalc", "x^y", frame));
-        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 3, "sincalc", "sin(x)", frame));
+        functionButtons.add(EquationValue.POW.value, this.makeButton(5, 3, "powcalc", "x^y", frame));
+        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 4, "sincalc", "sin(x)", frame));
         functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "stdcalc", "stdev", frame));
         functionButtons.add(EquationValue.MAD.value, this.makeButton(5, 2, "madcalc", "MAD", frame));
+        
         this.makeButton(3, 4, "equals", "=", frame);
         
         
@@ -177,7 +187,17 @@ public class CalculatorGUI implements ActionListener {
         }
         
         
-        
+        if(command.equals("equals")) {
+        	EquationParser p = new EquationParser();
+        	ArrayList<Symbol> s = new ArrayList<Symbol>();
+        	//s.add(Symbol.FIVE);
+        	try {
+				double b = p.parseEquation(s);
+			} catch (TooManyDecimalException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        }
         
         EquationType eq = EquationType.NONE;
         MultiVariableEquation multiEquation = null;

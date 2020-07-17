@@ -2,25 +2,35 @@ package gui;
 
 public class SinCalculator {
 	
+	private static final double  EPSILON = 0.01;
+	
+	private double pi;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		float toCalc = 0.4014257f;
 		
 		
 		
-		
-		
+		SinCalculator scalc = new SinCalculator();
 		
 		
 		//System.out.println("TEST1: " + positiveIntPower(4,4) );
 		
-		float res = calculateSin(toCalc);
+		//double res = calculateSin(toCalc);
 		
-		System.out.println("Val1: "+res);
-		System.out.println("Val2: "+calculateSin(calculatePi()));
-		System.out.println("Val3: "+calculateSin(calculatePi()/2));
-		System.out.println("Val4: "+calculateSin(calculatePi()*4.5f));
+		//scalc.checkPi();
+		
+		
+		scalc.checkValue(0);
+		System.out.println(scalc.calculate(3.1));
+		//SinCalculator.checkValue(calculatePi());
+		//SinCalculator.checkValue(calculatePi()/2);
+		//SinCalculator.checkValue(calculatePi()*4.5);
+		//SinCalculator.checkValue(1);
+		
+		
+		
 		
 		//Math.sin(res);
 		
@@ -28,29 +38,84 @@ public class SinCalculator {
 
 	}
 	
+	public SinCalculator() {
+		pi = calculatePi(EPSILON);
+	}
 	
-	public static float calculateSin(float num) {
-		//Note: Using DEGREES
+	public void checkPi() {
+		double truePi = Math.PI;	
+		double ourPi = calculatePi(EPSILON);
+		double diff = Math.abs(truePi-ourPi);
+		System.out.println("True pi: "+truePi+" | Our pi: | "+ourPi+" | Diff: "+diff);
+	}
+	
+	public void checkValue(double num) {
+		double res1 = Math.sin(num);
+		double res2 = calculateSin(num);
+		double absdif = Math.abs(res1-res2);
+		System.out.println("True value: "+res1+"  |  Our value: "+res2+"  |  ABS: "+absdif);
+		
+	}
+	
+	public double calculate(double num) {
+		return calculateSin(num);
+	}
+	
+	
+	
+	
+	private double calculateSin(double num) {
 		
 		num = clampValue(num);
 		
-		return taylorSinApproximate(num,6);
+		
+		return taylorSinApproximatePrecision(num,EPSILON);
 		
 		
 		
 	}
 	
-	public static float calculatePi() {
-		return 3.14159265359f; //TODO: Calculate by hand
+	public double calculatePi(double epsilon) {
+		double ourepsilon = epsilon/4;//We calculate pi/4
+		int i = 1;
+		double res = 0;
+		double lastres = 0;
+		do {
+			double sign = (i%2==0)?-1:1;
+			int termFraction = 2*i-1;
+			
+			double toadd = sign*1/termFraction;
+			lastres = res;
+			res+=toadd;
+			i++;
+		}while(Math.abs(res-lastres) > ourepsilon);
+		return res*4; //TODO: Calculate by hand
 	}
 	
-	public static float taylorSinApproximate(float num, int terms) {
-		float res = 0;
+	public double taylorSinApproximatePrecision(double num, double epsilon) {
+		double res = 0;
+		double lastres = 0;
+		int i = 1;
+		do{
+			int termExponent = 2*i-1;
+			double sign = (i%2==0)?-1:1;
+			
+			double toAdd = sign*positiveIntPower(num,termExponent)/positiveIntFactorial(termExponent);
+			lastres = res;
+			res+= toAdd;
+			i++;
+			
+		}while(Math.abs(res-lastres) > epsilon);
+		return res;
+	}
+	
+	public double taylorSinApproximate(double num, int terms) {
+		double res = 0;
 		for(int i = 1; i <= terms; i++) {
 			int termExponent = 2*i-1;
-			float sign = (i%2==0)?-1:1;
+			double sign = (i%2==0)?-1:1;
 			
-			float toAdd = sign*positiveIntPower(num,termExponent)/positiveIntFactorial(termExponent);
+			double toAdd = sign*positiveIntPower(num,termExponent)/positiveIntFactorial(termExponent);
 			res+= toAdd;
 			
 			
@@ -59,16 +124,17 @@ public class SinCalculator {
 		
 	}
 	
-	public static float positiveIntPower(float num, int power) {
-		float res = 1;
+	public double positiveIntPower(double num, int power) {
+		double res = 1;
+		
 		for(int i = 0; i < power; i++) {
 			res *= num;
 		}
 		return res;
 	}
 	
-	public static float positiveIntFactorial(int factor) {
-		float res = 1;
+	public double positiveIntFactorial(int factor) {
+		double res = 1;
 		
 		for(int i = 1; i <= factor; i++) {
 			 res *= i;
@@ -79,21 +145,15 @@ public class SinCalculator {
 	
 	
 	
-	public static float clampValue(float val) {
-		
-		float pi = calculatePi();
-		
+	public double clampValue(double val) {
 		val += pi;
-		
 		val = absoluteModulus(val , pi*2);
-		
 		val -= pi;
-		
 		return val;
 		
 	}
 	
-	public static float absoluteModulus(float a, float b) {
+	public double absoluteModulus(double a, double b) {
 		return (a % b + b) % b;
 	}
 

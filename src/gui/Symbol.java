@@ -33,11 +33,4 @@ public enum Symbol{
     public String getValue() {
         return value;
     }
-    
-    public static Symbol getSymbol(String s) {
-    	
-    	
-		return null;
-    	
-    }
 }

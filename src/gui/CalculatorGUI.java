@@ -25,6 +25,8 @@ public class CalculatorGUI implements ActionListener {
 	
 	ArrayList<JButton> functionButtons;
 	
+	ArrayList<JButton> symbolButtons;
+	
 	enum EquationType{
 		NONE,ONE,TWO,MULTI
 	}
@@ -99,15 +101,15 @@ public class CalculatorGUI implements ActionListener {
         this.makeButton(2, 4, ".", ".", frame);
         this.makeButton(3, 1,"clear","Clear",frame);
         this.makeButton(3, 2,"back","Del",frame);
-        this.makeButton(4, 4,"comma",",",frame);
-        this.makeButton(4, 1,"oparen","(",frame);
-        this.makeButton(5, 1,"cparen",")",frame);
-        functionButtons.add(EquationValue.E.value, this.makeButton(4, 3, "ecalc", "e^x", frame));
-        functionButtons.add(EquationValue.PI.value, this.makeButton(3, 3, "picalc", "π^x", frame));
-        functionButtons.add(EquationValue.POW.value, this.makeButton(5, 3, "powcalc", "x^y", frame));
-        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 4, "sincalc", "sin(x)", frame));
-        functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "stdcalc", "stdev", frame));
-        functionButtons.add(EquationValue.MAD.value, this.makeButton(5, 2, "madcalc", "MAD", frame));
+        this.makeButton(4, 4,",",",",frame);
+        this.makeButton(4, 1,"(","(",frame);
+        this.makeButton(5, 1,")",")",frame);
+        functionButtons.add(EquationValue.E.value, this.makeButton(4, 3, "e^(", "e^x", frame));
+        functionButtons.add(EquationValue.PI.value, this.makeButton(3, 3, "π^(", "π^x", frame));
+        functionButtons.add(EquationValue.POW.value, this.makeButton(5, 3, "^", "x^y", frame));
+        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 4, "SIN(", "sin(x)", frame));
+        functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "STDEV(", "stdev", frame));
+        functionButtons.add(EquationValue.MAD.value, this.makeButton(5, 2, "MAD(", "MAD", frame));
         
         this.makeButton(3, 4, "equals", "=", frame);
         

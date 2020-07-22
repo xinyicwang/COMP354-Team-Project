@@ -20,7 +20,21 @@ public class CalculatorGUI implements ActionListener {
 
 	
 	ArrayList<Double> inputs;
-	EquationValue equation;
+	EquationValue currentOperation;
+	EquationType currentType;
+	ArrayList<String> functionButtonLabels;
+    MultiVariableEquation multiEquation;
+    TwoVariableEquation twoEquation;
+    OneVariableEquation singleEquation;
+    
+    MultiVariableEquation stdEquation;
+    MultiVariableEquation madEquation;
+    TwoVariableEquation powEquation;
+    OneVariableEquation sinEquation;
+    OneVariableEquation epowEquation;
+    OneVariableEquation pipowEquation;
+	
+	
 	
 	ArrayList<JButton> functionButtons;
 	
@@ -29,7 +43,7 @@ public class CalculatorGUI implements ActionListener {
 	}
 	
 	enum EquationValue{
-		SIN(0),E(1),PI(2),POW(3),MAD(4),STDEV(5);
+		NONE(-1),SIN(0),E(1),PI(2),POW(3),MAD(4),STDEV(5);
 		private final int value;
 	    private EquationValue(int value) {
 	        this.value = value;
@@ -57,7 +71,19 @@ public class CalculatorGUI implements ActionListener {
         
     	inputs = new ArrayList<Double>();
     	functionButtons = new ArrayList<JButton>();
+    	functionButtonLabels = new ArrayList<String>();
     	
+    	currentOperation = null;
+    	currentType = null;
+    	
+    	
+    	/*   Add your equations here */
+    	stdEquation =  new DummyMultiVariableEquation();
+        madEquation =  new DummyMultiVariableEquation();
+        powEquation =  new DummyTwoVariableEquation();
+        sinEquation =  new DummySingleVariableEquation();
+        epowEquation =  new DummySingleVariableEquation();
+        pipowEquation =  new DummySingleVariableEquation();
     	
         JFrame frame = new JFrame("Transcendental Function Calculator");
         frame.setSize(300,300);
@@ -93,16 +119,18 @@ public class CalculatorGUI implements ActionListener {
         this.makeButton(2, 4, ".", ".", frame);
         this.makeButton(3, 1,"clear","Clear",frame,1,2);
         this.makeButton(5, 1,"ce","CE",frame);
+        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 3, "sincalc", "sin(x)", frame));
         functionButtons.add(EquationValue.E.value, this.makeButton(3, 2, "ecalc", "e^x", frame));
         functionButtons.add(EquationValue.PI.value, this.makeButton(3, 3, "picalc", "π^x", frame));
         functionButtons.add(EquationValue.POW.value, this.makeButton(4, 3, "powcalc", "x^y", frame));
-        functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 3, "sincalc", "sin(x)", frame));
-        functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "stdcalc", "stdev", frame));
         functionButtons.add(EquationValue.MAD.value, this.makeButton(5, 2, "madcalc", "MAD", frame));
+        functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "stdcalc", "stdev", frame));
         this.makeButton(3, 4, "equals", "=", frame);
         
         
-        
+        for(int i = 0; i < functionButtons.size();i++) {
+        	functionButtonLabels.add(functionButtons.get(i).getText());
+        }
         
         
         
@@ -116,22 +144,28 @@ public class CalculatorGUI implements ActionListener {
     	return this.makeButton(x, y, actionName, label, frame,1,1);
     }
     
-    private void disableOtherFunctionButtons(EquationValue eq) {
+    private void toggleOtherFunctionButtons(EquationValue eq,boolean toggle) {
     	int val = eq.value;
     	for (int i = 0; i < functionButtons.size(); i++) {
             if(i != val) {
-            	functionButtons.get(i).setEnabled(false);
+            	functionButtons.get(i).setEnabled(toggle);
             }
         }
     	
     	
     }
     
-    private void enableAllFunctionButtons() {
+    private void toggleAllFunctionButtons(boolean toggle) {
     	for (int i = 0; i < functionButtons.size(); i++) {
             
-            	functionButtons.get(i).setEnabled(true);
+            	functionButtons.get(i).setEnabled(toggle);
             
+        }
+    }
+    
+    private void restoreFunctionButtonLables() {
+    	for(int i = 0; i < functionButtons.size();i++) {
+        	functionButtons.get(i).setText(functionButtonLabels.get(i));
         }
     }
 
@@ -158,6 +192,8 @@ public class CalculatorGUI implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+    	
+    	boolean isBlank = false;
         String command = e.getActionCommand();
         String text = numberInput.getText();
         
@@ -173,6 +209,7 @@ public class CalculatorGUI implements ActionListener {
             return;
         }
         if(text.equals("")) {
+        	isBlank = true;
         	text = "0";
         }
         
@@ -180,9 +217,6 @@ public class CalculatorGUI implements ActionListener {
         
         
         EquationType eq = EquationType.NONE;
-        MultiVariableEquation multiEquation = null;
-        TwoVariableEquation twoEquation = null;
-        OneVariableEquation singleEquation = null;
         switch(command) {
         
         	case ".":
@@ -194,46 +228,92 @@ public class CalculatorGUI implements ActionListener {
             	numberInput.setText("");
         		break;
         	case "ecalc":
+        		currentOperation = EquationValue.E;
         		eq = EquationType.ONE;
-        		singleEquation = new DummySingleVariableEquation();
+        		singleEquation = epowEquation;
         		break;
         	case "picalc":
+        		currentOperation = EquationValue.PI;
         		eq = EquationType.ONE;
-        		singleEquation = new DummySingleVariableEquation();
+        		singleEquation = pipowEquation;
         		break;
         	case "sincalc":
+        		currentOperation = EquationValue.SIN;
         		eq = EquationType.ONE;
-        		singleEquation = new DummySingleVariableEquation();
+        		singleEquation = sinEquation;
         		break;
         	case "powcalc":
+        		currentOperation = EquationValue.POW;
         		eq = EquationType.TWO;
-        		twoEquation = new DummyTwoVariableEquation();
+        		twoEquation = powEquation;
         		break;
         	case "stdcalc":
+        		currentOperation = EquationValue.STDEV;
         		eq = EquationType.MULTI;
-        		multiEquation = new DummyMultiVariableEquation();
+        		multiEquation = stdEquation;
+        		functionButtons.get(EquationValue.STDEV.value).setText("Next");
         		break;
         	case "madcalc":
+        		currentOperation = EquationValue.MAD;
         		eq = EquationType.MULTI;
-        		multiEquation = new DummyMultiVariableEquation();
+        		multiEquation = madEquation;
+        		functionButtons.get(EquationValue.MAD.value).setText("Next");
+        		break;
         	
         	
         }
         double num = Double.parseDouble(text);
         double res = num;
+        
+        if(command.equals("equals")) {
+        	
+        	switch(currentType) {
+        		case TWO:
+        			double numA = inputs.get(0);
+        			double numB = num;
+        			res = twoEquation.calculate(numA, numB);
+                	numberInput.setText(res+"");
+                	inputs.clear();
+                	currentType = null;
+                	currentOperation = null;
+                	toggleAllFunctionButtons(true);
+        			break;
+        		case MULTI:
+        			if(!isBlank) {
+        				inputs.add(num);
+        			}
+        			res = multiEquation.calculate(inputs);
+        			numberInput.setText(res+"");
+                	inputs.clear();
+                	currentType = null;
+                	currentOperation = null;
+                	toggleAllFunctionButtons(true);
+                	restoreFunctionButtonLables();
+        	}
+        }
+        
 	    switch(eq) {
 	        case NONE:
 	        	return;
 	        case ONE:
             	res = singleEquation.calculate(num);
+            	numberInput.setText(res+"");
 	        	break;
 	        case TWO:
+	        	currentType = eq;
+	        	inputs.add(0, num);
+            	numberInput.setText("");
+            	toggleAllFunctionButtons(false);
+	        	
 	        	break;
 	        case MULTI:
+	        	currentType = eq;
+	        	inputs.add(num);
+	        	numberInput.setText("");
+	        	toggleOtherFunctionButtons(currentOperation,false);
 	        	break;
 	        
         }
-	    numberInput.setText(res+"");
         
         
         

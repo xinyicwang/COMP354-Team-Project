@@ -14,11 +14,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CalculatorGUI implements ActionListener {
-
 	
+	
+	final int MAX_VALUE = 1000000000;
+
+	boolean toClear;
+	boolean errorDisplayed;
 	ArrayList<Double> inputs;
 	EquationValue currentOperation;
 	EquationType currentType;
@@ -37,7 +42,10 @@ public class CalculatorGUI implements ActionListener {
 	
 	
 	ArrayList<JButton> functionButtons;
-	
+
+    JTextField numberInput;
+    
+    
 	enum EquationType{
 		NONE,ONE,TWO,MULTI
 	}
@@ -54,7 +62,6 @@ public class CalculatorGUI implements ActionListener {
 	    }
 	}
 	
-    JTextField numberInput;
     
     public static void main(String[] args) {
         
@@ -69,12 +76,14 @@ public class CalculatorGUI implements ActionListener {
      */
     public CalculatorGUI() {
         
+    	errorDisplayed = false;
+    	toClear = false;
     	inputs = new ArrayList<Double>();
     	functionButtons = new ArrayList<JButton>();
     	functionButtonLabels = new ArrayList<String>();
     	
-    	currentOperation = null;
-    	currentType = null;
+    	currentOperation = EquationValue.NONE;
+    	currentType = EquationType.NONE;
     	
     	
     	/*   Add your equations here */
@@ -104,6 +113,11 @@ public class CalculatorGUI implements ActionListener {
         inputConstraints.weighty = 1.0;
         inputConstraints.fill = GridBagConstraints.BOTH;
         frame.getContentPane().add(numberInput,inputConstraints); 
+        numberInput.setText("0");
+        numberInput.setEditable(false);
+        numberInput.setHorizontalAlignment(JTextField.CENTER);
+        Font bigFont = numberInput.getFont().deriveFont(Font.PLAIN, 36f);
+        numberInput.setFont(bigFont);
         
         this.makeButton(0, 1, "7", "7", frame);
         this.makeButton(1, 1, "8", "8", frame);
@@ -185,6 +199,21 @@ public class CalculatorGUI implements ActionListener {
         return myButton;
     }
     
+    String doubleToString(double d) throws OverflowException {
+    	
+    	if(Math.abs(d) >= MAX_VALUE) {
+    		throw new OverflowException();
+    	}
+    	if(d % 1.0 != 0) {
+    		return String.valueOf(d);
+    	}
+    	else {
+    		DecimalFormat df = new DecimalFormat("#");
+    		String formatted = df.format(d); 
+    		return formatted;
+    	}
+    }
+    
     
     /**
      * Function called when a button is pressed. Determines which button is pressed, and either 
@@ -193,9 +222,20 @@ public class CalculatorGUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     	
+    	
     	boolean isBlank = false;
         String command = e.getActionCommand();
         String text = numberInput.getText();
+        
+        if(errorDisplayed) {
+    		if(!command.equals("clear") && !command.equals("ce")) {
+    			return;
+    		}
+    		if(command.equals("ce")) {
+    			command = "clear";
+    		}
+    	}
+    	
         
         boolean isNumeric = true;
         try {
@@ -205,13 +245,24 @@ public class CalculatorGUI implements ActionListener {
         }
         
         if (isNumeric) {
-            numberInput.setText(text+command);
+        	if(toClear) {
+        		text = "";
+        	}
+        	if(text.equals("0")) {
+        		text = "";
+        	}
+        	String result = text+command;
+        	double d = Double.parseDouble(result);
+        	if(Math.abs(d) < MAX_VALUE) {
+        		numberInput.setText(text+command);
+        	}
+            toClear = false;
             return;
         }
-        if(text.equals("")) {
+        /*if(text.equals("")) {
         	isBlank = true;
         	text = "0";
-        }
+        }*/
         
         
         
@@ -220,13 +271,26 @@ public class CalculatorGUI implements ActionListener {
         switch(command) {
         
         	case ".":
+        		if(toClear) {
+        			text = "0";
+        		}
             	if(!text.contains(".")) {
             		numberInput.setText(text+command);
             	}
+            	toClear = false;
         		break;
         	case "clear":
-            	numberInput.setText("");
-        		break;
+            	inputs.clear();
+            	currentOperation = EquationValue.NONE;
+            	currentType = EquationType.NONE;
+            	toggleAllFunctionButtons(true);
+            	restoreFunctionButtonLables();
+        		//Fall-through
+        	case "ce":
+            	numberInput.setText("0");
+            	toClear = false;
+            	errorDisplayed = false;
+        		return;
         	case "ecalc":
         		currentOperation = EquationValue.E;
         		eq = EquationType.ONE;
@@ -272,23 +336,44 @@ public class CalculatorGUI implements ActionListener {
         			double numA = inputs.get(0);
         			double numB = num;
         			res = twoEquation.calculate(numA, numB);
-                	numberInput.setText(res+"");
+        			try {
+        				numberInput.setText(doubleToString(res));
+        			}
+        			catch(OverflowException err)
+        			{
+        				numberInput.setText("Overflow Error!");
+        				errorDisplayed = true;
+        				
+        			}
                 	inputs.clear();
-                	currentType = null;
-                	currentOperation = null;
+                	currentType = EquationType.NONE;
+                	currentOperation = EquationValue.NONE;
                 	toggleAllFunctionButtons(true);
+                	toClear = true;
         			break;
         		case MULTI:
         			if(!isBlank) {
         				inputs.add(num);
         			}
         			res = multiEquation.calculate(inputs);
-        			numberInput.setText(res+"");
+        			try {
+        				numberInput.setText(doubleToString(res));
+        			}
+        			catch(OverflowException err)
+        			{
+        				numberInput.setText("Overflow Error!");
+        				errorDisplayed = true;
+        				
+        			}
                 	inputs.clear();
-                	currentType = null;
-                	currentOperation = null;
+                	currentType = EquationType.NONE;
+                	currentOperation = EquationValue.NONE;
                 	toggleAllFunctionButtons(true);
                 	restoreFunctionButtonLables();
+                	toClear = true;
+                	break;
+			default:
+				break;
         	}
         }
         
@@ -297,7 +382,16 @@ public class CalculatorGUI implements ActionListener {
 	        	return;
 	        case ONE:
             	res = singleEquation.calculate(num);
-            	numberInput.setText(res+"");
+            	try {
+    				numberInput.setText(doubleToString(res));
+    			}
+    			catch(OverflowException err)
+    			{
+    				numberInput.setText("Overflow Error!");
+    				errorDisplayed = true;
+    				
+    			}
+            	toClear = true;
 	        	break;
 	        case TWO:
 	        	currentType = eq;

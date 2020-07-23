@@ -283,7 +283,12 @@ public class CalculatorGUI implements ActionListener {
         
         if (command.equals("picalc")) {
         	double num = Double.parseDouble(text);
-        	double res = PowersOfPI.powersOfPi(num);
+        	double res = 0;
+			try {
+				res = PowersOfPI.calculatePowersOfPi(num);
+			} catch (InfinityException e1) {
+				e1.printStackTrace();
+			}
         	numberInput.setText(res+"");
             return;
         }

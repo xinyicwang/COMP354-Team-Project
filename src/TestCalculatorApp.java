@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Exceptions.InfinityException;
 import function.PowersOfPI;
 import function.EPower;
 import function.Exponentiation;
@@ -13,27 +14,27 @@ class TestCalculatorApp {
 	final double DELTA = 0.0000001;
 	
 	@Test
-	void test1PI() {
+	void test1PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
-		assertEquals(Math.pow(Math.PI, 0), calculator.powersOfPi(0), DELTA);
+		assertEquals(Math.pow(Math.PI, 0), calculator.calculatePowersOfPi(0), DELTA);
 	}
 
 	@Test
-	void test2PI() {
+	void test2PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
-		assertEquals(Math.pow(Math.PI, 2.1), calculator.powersOfPi(2.1), DELTA);
+		assertEquals(Math.pow(Math.PI, 2.1), calculator.calculatePowersOfPi(2.1), DELTA);
 	}
 
 	@Test
-	void test3PI() {
+	void test3PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
-		assertEquals(Math.pow(Math.PI, -1), calculator.powersOfPi(-1), DELTA);
+		assertEquals(Math.pow(Math.PI, -1), calculator.calculatePowersOfPi(-1), DELTA);
 	}
 
 	@Test
-	void test4PI() {
+	void test4PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
-		assertEquals(Math.pow(Math.PI, 100), calculator.powersOfPi(100), DELTA);
+		assertEquals(Math.pow(Math.PI, 100), calculator.calculatePowersOfPi(100), DELTA);
 	}
 	
 	@Test

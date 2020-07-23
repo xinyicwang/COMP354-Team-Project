@@ -8,6 +8,8 @@
  */
 package gui;
 
+import Exceptions.InfinityException;
+
 import function.*;
 
 import javax.swing.*;

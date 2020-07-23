@@ -1,5 +1,6 @@
 import java.util.*;
 
+import Exceptions.InfinityException;
 import function.PowersOfPI;
 import function.EPower;
 import function.Exponentiation;
@@ -9,7 +10,7 @@ import function.Mean;
 
 public class CalculatorApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InfinityException {
 		//Test x^y
 		System.out.println("==========Testing x^y==========");
 		System.out.println("3^4 = " + Exponentiation.powerInt(3,4.5));
@@ -30,9 +31,9 @@ public class CalculatorApp {
 		
 		//Test pi^x
 		System.out.println("==========Testing pi^x==========");
-		System.out.println("pi^1 = " + PowersOfPI.powersOfPi(1));
-		System.out.println("pi^(2.1) = " + PowersOfPI.powersOfPi(2.1));
-		System.out.println("pi^(-1) = " + PowersOfPI.powersOfPi(-1));
+		System.out.println("pi^1 = " + PowersOfPI.calculatePowersOfPi(1));
+		System.out.println("pi^(2.1) = " + PowersOfPI.calculatePowersOfPi(2.1));
+		System.out.println("pi^(-1) = " + PowersOfPI.calculatePowersOfPi(-1));
 		System.out.println("\n");
 
 		

@@ -1,9 +1,5 @@
 /*
- * CalculatorGUI
  * 
- * V0.4
- *
- * 2020-05-31
  * 
  */
 package gui;
@@ -17,18 +13,37 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * This class manages the GUI of the calculator, as well as the logic behind 
+ * selecting/chaining equations and handling overflows.
+ * 
+ * @Version 1.0 24 July 2020
+ * 
+ * @author Jenny Velicogna
+ * 
+ */
+
 public class CalculatorGUI implements ActionListener {
 	
 	
+	/**
+	 * Instance variables - doc comment
+	 */
+	
 	final int MAX_VALUE = 1000000000;
-
+	
 	boolean toClear;
 	boolean errorDisplayed;
+	
 	ArrayList<Double> inputs;
 	EquationValue currentOperation;
 	EquationType currentType;
+	
 	ArrayList<String> functionButtonLabels;
-    MultiVariableEquation multiEquation;
+	ArrayList<JButton> functionButtons;
+	JTextField numberInput;
+    
+	MultiVariableEquation multiEquation;
     TwoVariableEquation twoEquation;
     OneVariableEquation singleEquation;
     
@@ -40,10 +55,6 @@ public class CalculatorGUI implements ActionListener {
     OneVariableEquation pipowEquation;
 	
 	
-	
-	ArrayList<JButton> functionButtons;
-
-    JTextField numberInput;
     
     
 	enum EquationType{
@@ -71,7 +82,7 @@ public class CalculatorGUI implements ActionListener {
     }
     
     /**
-     * Initialize the GUI and all it's components.
+     * Constructor
      * 
      */
     public CalculatorGUI() {
@@ -127,7 +138,6 @@ public class CalculatorGUI implements ActionListener {
         this.makeButton(2, 2, "6", "6", frame);
         this.makeButton(0, 3, "1", "1", frame);
         this.makeButton(1, 3, "2", "2", frame);
-        
         this.makeButton(2, 3, "3", "3", frame);
         this.makeButton(0, 4, "0", "0", frame,1,2);
         this.makeButton(2, 4, ".", ".", frame);
@@ -142,7 +152,7 @@ public class CalculatorGUI implements ActionListener {
         this.makeButton(3, 4, "equals", "=", frame);
         
         
-        for(int i = 0; i < functionButtons.size();i++) {
+        for (int i = 0; i < functionButtons.size();i++) {
         	functionButtonLabels.add(functionButtons.get(i).getText());
         }
         
@@ -153,36 +163,31 @@ public class CalculatorGUI implements ActionListener {
         frame.setVisible(true);
     }
     
+    /**
+     * @param int x position of button with GridBagLayout
+     * @param int y position of button with GridBagLayout
+     * @param String actionName the action command to be associated with the button
+     * @param String label the label of the button
+     * @param JFrame frame the frame to apply the button to
+     * 
+     * @return the created button
+     */
     private JButton makeButton(int x,int y,String actionName,String label, JFrame frame) {
     
     	return this.makeButton(x, y, actionName, label, frame,1,1);
     }
     
-    private void toggleOtherFunctionButtons(EquationValue eq,boolean toggle) {
-    	int val = eq.value;
-    	for (int i = 0; i < functionButtons.size(); i++) {
-            if(i != val) {
-            	functionButtons.get(i).setEnabled(toggle);
-            }
-        }
-    	
-    	
-    }
-    
-    private void toggleAllFunctionButtons(boolean toggle) {
-    	for (int i = 0; i < functionButtons.size(); i++) {
-            
-            	functionButtons.get(i).setEnabled(toggle);
-            
-        }
-    }
-    
-    private void restoreFunctionButtonLables() {
-    	for(int i = 0; i < functionButtons.size();i++) {
-        	functionButtons.get(i).setText(functionButtonLabels.get(i));
-        }
-    }
-
+    /**
+     * @param x position of button with GridBagLayout
+     * @param y position of button with GridBagLayout
+     * @param actionName the action command to be associated with the button
+     * @param label the label of the button
+     * @param frame the frame to apply the button to
+     * @param height the height of the button with GridBagLayout
+     * @param width the width of the button with GridBagLayout
+     * 
+     * @return the created button
+     */
     private JButton makeButton(int x,int y,String actionName,String label, JFrame frame,int height, int width) {
     	JButton myButton = new JButton(label);
         GridBagConstraints myConstraints = new GridBagConstraints();
@@ -199,6 +204,51 @@ public class CalculatorGUI implements ActionListener {
         return myButton;
     }
     
+    
+    /**
+     * @param eq the type of equation of the button to skip
+     * @param toggle the state to change the buttons to
+     */
+    private void toggleOtherFunctionButtons(EquationValue eq,boolean toggle) {
+    	int val = eq.value;
+    	for (int i = 0; i < functionButtons.size(); i++) {
+            if(i != val) {
+            	functionButtons.get(i).setEnabled(toggle);
+            }
+        }
+    	
+    	
+    }
+    
+    /**
+     * @param toggle the state to change the buttons to
+     */
+    
+    private void toggleAllFunctionButtons(boolean toggle) {
+    	for (int i = 0; i < functionButtons.size(); i++) {
+            
+            	functionButtons.get(i).setEnabled(toggle);
+            
+        }
+    }
+    
+    
+    /**
+     * Restores the original lables of the buttons
+     */
+    private void restoreFunctionButtonLables() {
+    	for (int i = 0; i < functionButtons.size();i++) {
+        	functionButtons.get(i).setText(functionButtonLabels.get(i));
+        }
+    }
+
+    
+    /**
+     * 
+     * @param d the double to convert
+     * @return the string value
+     * @throws OverflowException If the double is larger then the calculators limit
+     */
     String doubleToString(double d) throws OverflowException {
     	
     	if(Math.abs(d) >= MAX_VALUE) {
@@ -215,10 +265,6 @@ public class CalculatorGUI implements ActionListener {
     }
     
     
-    /**
-     * Function called when a button is pressed. Determines which button is pressed, and either 
-     * appends or modifies the calculator text, or else performs a calculation involving the text.
-     */
     @Override
     public void actionPerformed(ActionEvent e) {
     	
@@ -259,10 +305,7 @@ public class CalculatorGUI implements ActionListener {
             toClear = false;
             return;
         }
-        /*if(text.equals("")) {
-        	isBlank = true;
-        	text = "0";
-        }*/
+        
         
         
         
@@ -285,7 +328,7 @@ public class CalculatorGUI implements ActionListener {
             	currentType = EquationType.NONE;
             	toggleAllFunctionButtons(true);
             	restoreFunctionButtonLables();
-        		//Fall-through
+        		/*Fall-through*/
         	case "ce":
             	numberInput.setText("0");
             	toClear = false;
@@ -406,9 +449,7 @@ public class CalculatorGUI implements ActionListener {
 	        	numberInput.setText("");
 	        	toggleOtherFunctionButtons(currentOperation,false);
 	        	break;
-	        
         }
-        
         
         
     }

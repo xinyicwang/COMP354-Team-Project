@@ -1,46 +1,59 @@
 package gui;
 
+/**
+ * Class to calculate the sin of a variable
+ * 
+ * @author Jenny Velicogna
+ * 
+ * @version 1.0
+ *
+ */
+
 public class SinCalculator {
 	
-	private static final double  EPSILON = 0.01;
+	private static final double  EPSILON = 0.0000001;
 	
 	private double pi;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		
 		
+		//Test cases todo:
 		
-		
+		/*
 		SinCalculator scalc = new SinCalculator();
 		
+		assertEquals(Math.PI,scalc.pi,EPSILON);
 		
-		//System.out.println("TEST1: " + positiveIntPower(4,4) );
-		
-		//double res = calculateSin(toCalc);
-		
-		//scalc.checkPi();
-		
-		
-		scalc.checkValue(0);
-		System.out.println(scalc.calculate(3.1));
-		//SinCalculator.checkValue(calculatePi());
-		//SinCalculator.checkValue(calculatePi()/2);
-		//SinCalculator.checkValue(calculatePi()*4.5);
-		//SinCalculator.checkValue(1);
-		
-		
-		
-		
-		//Math.sin(res);
-		
+		assertEquals(Math.sin(0),scalc.calculate(0),EPSILON);
+		assertEquals(Math.sin(1),scalc.calculate(1),EPSILON);
+		assertEquals(Math.sin(-1),scalc.calculate(-1),EPSILON);
+		assertEquals(Math.sin(-5),scalc.calculate(-5),EPSILON);
+		assertEquals(Math.sin(5),scalc.calculate(5),EPSILON);
+		assertEquals(Math.sin(Math.PI),scalc.calculate(Math.PI),EPSILON);
+		assertEquals(Math.sin(Math.PI * -1),scalc.calculate(Math.PI*-1),EPSILON);
+		assertEquals(Math.sin(Math.PI * -2),scalc.calculate(Math.PI*-2),EPSILON);
+		assertEquals(Math.sin(Math.PI * 2),scalc.calculate(Math.PI*2),EPSILON);
+		*/
 		
 
+		
+		assertEquals(Math.pow(Math.PI, 0), calculator.powersOfPi(0), DELTA);
+		
 	}
 	
+	/**
+	 * Constructor
+	 */
 	public SinCalculator() {
 		pi = calculatePi(EPSILON);
 	}
+	
+	/**
+	 * Prints out the true value of pi, as well as our calculated value, and the 
+	 * difference between the two
+	 */
 	
 	public void checkPi() {
 		double truePi = Math.PI;	
@@ -49,6 +62,11 @@ public class SinCalculator {
 		System.out.println("True pi: "+truePi+" | Our pi: | "+ourPi+" | Diff: "+diff);
 	}
 	
+	/**
+	 * Prints out the true sin of a number, as well as our calculated value, and the
+	 * difference between the two
+	 * @param num the number to take the sine of
+	 */
 	public void checkValue(double num) {
 		double res1 = Math.sin(num);
 		double res2 = calculateSin(num);
@@ -61,20 +79,22 @@ public class SinCalculator {
 		return calculateSin(num);
 	}
 	
-	
-	
-	
+	/**
+	 * 
+	 * @param num the number to calculate the sin of
+	 * @return the sin of the number
+	 */
 	private double calculateSin(double num) {
-		
 		num = clampValue(num);
-		
-		
 		return taylorSinApproximatePrecision(num,EPSILON);
-		
-		
 		
 	}
 	
+	/**
+	 * Calculate the value of pie
+	 * @param epsilon the precision of which to calculate pi up to
+	 * @return
+	 */
 	public double calculatePi(double epsilon) {
 		double ourepsilon = epsilon/4;//We calculate pi/4
 		int i = 1;
@@ -83,15 +103,20 @@ public class SinCalculator {
 		do {
 			double sign = (i%2==0)?-1:1;
 			int termFraction = 2*i-1;
-			
 			double toadd = sign*1/termFraction;
 			lastres = res;
 			res+=toadd;
 			i++;
-		}while(Math.abs(res-lastres) > ourepsilon);
+		}while (Math.abs(res-lastres) > ourepsilon);
 		return res*4; //TODO: Calculate by hand
 	}
 	
+	/**
+	 * Uses the taylor sin approximation to calculate the sin of a value
+	 * @param num The number to calculate (between -pi and pi)
+	 * @param epsilon The precision of which to calculate
+	 * @return the calculated value
+	 */
 	public double taylorSinApproximatePrecision(double num, double epsilon) {
 		double res = 0;
 		double lastres = 0;
@@ -105,38 +130,34 @@ public class SinCalculator {
 			res+= toAdd;
 			i++;
 			
-		}while(Math.abs(res-lastres) > epsilon);
+		}while (Math.abs(res-lastres) > epsilon);
 		return res;
 	}
 	
-	public double taylorSinApproximate(double num, int terms) {
-		double res = 0;
-		for(int i = 1; i <= terms; i++) {
-			int termExponent = 2*i-1;
-			double sign = (i%2==0)?-1:1;
-			
-			double toAdd = sign*positiveIntPower(num,termExponent)/positiveIntFactorial(termExponent);
-			res+= toAdd;
-			
-			
-		}
-		return res;
-		
-	}
-	
+	/**
+	 * Calulates a number to the power of a positive integer
+	 * @param num the base
+	 * @param power the exponent
+	 * @return the value of the calculation
+	 */
 	public double positiveIntPower(double num, int power) {
 		double res = 1;
 		
-		for(int i = 0; i < power; i++) {
+		for (int i = 0; i < power; i++) {
 			res *= num;
 		}
 		return res;
 	}
 	
+	/**
+	 * Calculates the factorial of a number
+	 * @param factor the number to factorialise
+	 * @return the value of the factorial
+	 */
 	public double positiveIntFactorial(int factor) {
 		double res = 1;
 		
-		for(int i = 1; i <= factor; i++) {
+		for (int i = 1; i <= factor; i++) {
 			 res *= i;
 		}
 		return res;
@@ -144,7 +165,11 @@ public class SinCalculator {
 	
 	
 	
-	
+	/**
+	 * Clamps a value to be between -pi and pi, by adding or subtracting 2pi as nececerry
+	 * @param val the value to clamp
+	 * @return the clamped value
+	 */
 	public double clampValue(double val) {
 		val += pi;
 		val = absoluteModulus(val , pi*2);
@@ -153,6 +178,12 @@ public class SinCalculator {
 		
 	}
 	
+	/**
+	 * Calculate the modulus of a number, with negative numbers being calculated the same ways as positive (ex: -4 mod 3 returns 2 instead of 1) 
+	 * @param a the number to take the modulus of
+	 * @param b the modulus
+	 * @return the value
+	 */
 	public double absoluteModulus(double a, double b) {
 		return (a % b + b) % b;
 	}

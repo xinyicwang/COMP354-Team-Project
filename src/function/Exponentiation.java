@@ -12,9 +12,13 @@
 
 package function;
 
-import Exceptions.*;
 
-public class Exponentiation {
+import Exceptions.InvalidInputException;
+import gui.TwoVariableEquation;
+
+public class Exponentiation implements TwoVariableEquation{
+	
+	
 
 	
     /**
@@ -150,5 +154,10 @@ public class Exponentiation {
     	
     	return middle;
     }
+
+	@Override
+	public double calculate(double x, double y) throws InvalidInputException {
+		return Exponentiation.power(x, y);
+	}
     	
 } 

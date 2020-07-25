@@ -1,24 +1,44 @@
+/*
+ * Exponentiation
+ * Team J - COMP 354
+ * Concordia University 
+ * 
+ * Version: Iteration II
+ *
+ * Due: August 10th 2020
+ * 
+ * Copyright notice
+ */
+
 package function;
+
+import Exceptions.*;
 
 public class Exponentiation {
 
 	
     /**
-     * Function that calculates the exponential given a base number and an integer power number
+     * Function that calculates the exponential given a base number and a power number (adjusting for rational numbers)
      * @param base: base number
      * @param exp: exponent number
      * @return exponentiation of base number to the power of exponent number
      */
-	
-    public static double power (double base, double exp) {
+    public static double power (double base, double exp) throws InvalidInputException{
     	double result = 1;
     	char sign = 'p'; 	
     	long nthRoot = 1;
-
+    	
     	if (exp < 0) {
     		exp *= -1;
     		sign = 'n';
+    		
+    		if (base==0) {
+    			throw new Exceptions.InvalidInputException("Invalid input.");
+    		}
     	}
+    	
+    	if (base==0)
+    		return base;
     	
     	while (exp%1 != 0) {
     		exp *= 10;
@@ -35,25 +55,37 @@ public class Exponentiation {
     		return ((double)1/result);
     }
     
-    public static double powerInt(double base, long exp) {
-    	double temp; 
+    /**
+     * Function that calculates the exponential given a base number and an integer power number, using recursion
+     * @param base: base number
+     * @param exp: exponent number
+     * @return exponentiation of base number to the power of exponent number
+     */
+     public static double powerInt(double base, long exp) {
+    	double result; 
         if(exp == 0) 
         {
             return 1; 
         }
-        temp = powerInt(base, exp/2);  
+        result = powerInt(base, exp/2);  
           
         if (exp%2 == 0) 
         {
-            return temp*temp; 
+            return result*result; 
         }
         else
         { 
-            return base * temp * temp; 
+            return base * result * result; 
         } 
  
     }
-    
+ 
+	/**
+	 * Function that estimates the nth root
+	 * @param base: number to estimate
+	 * @param nthRoot: number of times needed to multiply to find the base
+	 * @return the nth root of the base
+	 */
     private static double root(double base, long nthRoot) {
     	   	
     	if (nthRoot == 1)
@@ -78,6 +110,14 @@ public class Exponentiation {
     	
     }
     
+	/**
+	 * Function that estimates the root, using the bisection method
+	 * @param upper: upper bound of the set containing the real root
+	 * @param lower: lower bound of the set containing the real root
+	 * @param base: number of the nth root
+	 * @param nthRoot: number of times needed to multiply to find the base
+	 * @return a middle estimate of the root between upper and lower numbers
+	 */
     private static double bisection(double upper, double lower, double base, long nthRoot) {
     	
     	long iteration = 0;

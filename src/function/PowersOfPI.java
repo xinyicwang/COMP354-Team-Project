@@ -1,21 +1,29 @@
 /*
- * This scipt has been written by Briana Toia 40097889 
- * with the inspiration of two sources
+ * PowersOfPi
+ * Team J - COMP 354
+ * Concordia University 
+ * 
+ * Version: Iteration II
+ *
+ * Due: August 10th 2020
+ * 
+ * Copyright notice
+ * Written with the inspiration of two sources
  * https:stackoverflow.com/questions/20287513/can-anyone-make-heads-or-tales-of-this-spigot-algorithm-code-pitiny-c
  * https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
- * This belongs to Team J for COMP 354 
- * Concordia University
  */
 
 package function;
 
 import Exceptions.*;
 
-/*
+/**
  * Class for calculating the transcendental function PI^x.
  * Has a function that calculates pi using the Spigot algorithm
  * which calls a main power function.
  * This function then divides the work depending on the exponent 
+ * @version 24 July 2020
+ * @author Briana Toia 40097889
  */
 public class PowersOfPI {
 
@@ -31,8 +39,10 @@ public class PowersOfPI {
 	 * @throws InfinityException 
 	 */
 	public static double calculatePowersOfPi(double exp) throws InfinityException {
+		
 		//Calculates Pi based off the Spigot Algorithm
 		//Adapted code from https:stackoverflow.com/questions/20287513/can-anyone-make-heads-or-tales-of-this-spigot-algorithm-code-pitiny-c
+		//Variables used to calculate pi (therefore named a-i) 
 		int[] a = new int[55];
 		int b = 0, c = 55, d = 0, e = 0, f = 10000, g = 0, h = 0, i = 0;
         String piDigits = "0.";
@@ -71,12 +81,14 @@ public class PowersOfPI {
 	 * @return the result of base multiplied by itself exp times
 	 * @throws InfinityException 
 	 */
-	private static double calculatePower(double base, double exp) throws InfinityException {
+	private static double calculatePower(double base, double exp) 
+			throws InfinityException {
 
 		long nthRoot = 1;
 		boolean isNegative = exp < 0;
-		//helps reduce errors
-		int maxDecimalLength = 12;
+		double powerResult = 1;
+		long newExp;
+		int maxDecimalLength = 12; //helps reduce errors
 		
 		if (exp == 0)
 		{
@@ -96,7 +108,7 @@ public class PowersOfPI {
 		}
 		
 		//fix for possible errors
-		for (int i = 0; i < 13-maxDecimalLength; i++)
+		for (int i = 0; i < 12 - maxDecimalLength; i++)
 		{
 			if (Double.isNaN(exp % 10) || exp % 10 < 1 ) {
 				exp /= 10;
@@ -109,16 +121,15 @@ public class PowersOfPI {
 
 		base = calculateRoot(base, nthRoot);
 
-		double powerResult = 1;
-		long newExp = (long) exp;
-
+		newExp = (long) exp;
+		
 		powerResult = calculateQuickPower(base, newExp);
 		
 		if (Double.isInfinite(powerResult)) {
 			throw new Exceptions.InfinityException("Infinity");
 		}
 		
-		return isNegative ? 1 / powerResult : powerResult;
+		return (isNegative ? 1 / powerResult : powerResult);
 	}
 
 	/**
@@ -130,14 +141,14 @@ public class PowersOfPI {
 	 * @return the nth root of the base
 	 */
 	private static double calculateRoot(double base, long nthRoot) {
+		
+		double upperRoot = 1;
+		double lowerRoot = 0;
+		double baseApproximation = 1;
+		
 		if (nthRoot == 1) {
 			return base;
 		}
-
-		double upperRoot = 1;
-		double lowerRoot = 0;
-
-		double baseApproximation = 1;
 
 		for (double root = 1; baseApproximation < base; root++) {
 			baseApproximation *= calculateQuickPower(root, nthRoot);

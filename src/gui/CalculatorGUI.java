@@ -13,6 +13,9 @@ import Exceptions.InfinityException;
 import function.*;
 
 import javax.swing.*;
+
+import Exceptions.InfinityException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -289,6 +292,8 @@ public class CalculatorGUI implements ActionListener {
 			try {
 				res = PowersOfPI.calculatePowersOfPi(num);
 			} catch (InfinityException e1) {
+
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
         	numberInput.setText(res+"");

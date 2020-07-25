@@ -1,6 +1,8 @@
+package function;
+
 import java.util.*;
 
-package function;
+
 
 
 public class Exponentiation {

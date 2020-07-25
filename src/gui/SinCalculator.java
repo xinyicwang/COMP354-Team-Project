@@ -39,7 +39,7 @@ public class SinCalculator {
 		
 
 		
-		assertEquals(Math.pow(Math.PI, 0), calculator.powersOfPi(0), DELTA);
+		//assertEquals(Math.pow(Math.PI, 0), calculator.powersOfPi(0), DELTA);
 		
 	}
 	
@@ -48,6 +48,11 @@ public class SinCalculator {
 	 */
 	public SinCalculator() {
 		pi = calculatePi(EPSILON);
+	}
+	
+	public double getPI()
+	{
+		return pi;
 	}
 	
 	/**

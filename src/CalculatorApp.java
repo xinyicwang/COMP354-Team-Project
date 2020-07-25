@@ -1,18 +1,5 @@
-/*
- * TestCalculator
- * Team J - COMP 354
- * Concordia University 
- * 
- * Version: Iteration II
- *
- * Due: August 10th 2020
- * 
- * Copyright notice
- */
-
 import java.util.*;
 
-import Exceptions.InvalidInputException;
 import function.PowersOfPI;
 import function.EPower;
 import function.Exponentiation;
@@ -22,14 +9,13 @@ import function.Mean;
 
 public class CalculatorApp {
 
-	public static void main(String[] args) throws InvalidInputException {
-				
+	public static void main(String[] args) {
 		//Test x^y
 		System.out.println("==========Testing x^y==========");
-		System.out.println("3^4.5 = " + Exponentiation.power(3,4.5));
-		System.out.println("25^0 = " + Exponentiation.power(25,0));
-		System.out.println("-2^5 = " + Exponentiation.power(-2,5));
-		System.out.println("2^-2 = " + Exponentiation.power(2,-2.5));
+		System.out.println("3^4 = " + Exponentiation.powerInt(3,4.5));
+		System.out.println("25^3 = " + Exponentiation.powerInt(25,3));
+		System.out.println("-2^5 = " + Exponentiation.powerInt(-2,5));
+		System.out.println("2^-2 = " + Exponentiation.powerInt(2,-2.5));
 		System.out.println("\n");
 		System.out.println(Math.pow(Math.E,100));
 

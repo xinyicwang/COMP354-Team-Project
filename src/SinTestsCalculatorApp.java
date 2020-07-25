@@ -94,7 +94,7 @@ class SinTestsCalculatorApp {
 	 */
 	void test7() {
 		SinCalculator scalc = new SinCalculator();
-		assertEquals(Math.sin(Math.PI),scalc.calculate(Math.PI),EPSILON);
+		assertEquals(Math.sin(Math.PI),scalc.calculate(scalc.getPI()),EPSILON);
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ class SinTestsCalculatorApp {
 	 */
 	void test8() {
 		SinCalculator scalc = new SinCalculator();
-		assertEquals(Math.sin(Math.PI * -1),scalc.calculate(Math.PI * -1),EPSILON);
+		assertEquals(Math.sin(Math.PI * -1),scalc.calculate(scalc.getPI() * -1),EPSILON);
 	}
 	
 	@Test
@@ -114,7 +114,7 @@ class SinTestsCalculatorApp {
 	 */
 	void test9() {
 		SinCalculator scalc = new SinCalculator();
-		assertEquals(Math.sin(Math.PI * -2),scalc.calculate(Math.PI * -2),EPSILON);
+		assertEquals(Math.sin(Math.PI * -2),scalc.calculate(scalc.getPI() * -2),EPSILON);
 	}
 	
 	@Test
@@ -124,7 +124,7 @@ class SinTestsCalculatorApp {
 	 */
 	void test10() {
 		SinCalculator scalc = new SinCalculator();
-		assertEquals(Math.sin(Math.PI * 2),scalc.calculate(Math.PI * 2),EPSILON);
+		assertEquals(Math.sin(Math.PI * 2),scalc.calculate(scalc.getPI() * 2),EPSILON);
 	}
 
 }

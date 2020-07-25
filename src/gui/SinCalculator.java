@@ -9,7 +9,7 @@ package gui;
  *
  */
 
-public class SinCalculator {
+public class SinCalculator implements OneVariableEquation{
 	
 	private static final double  EPSILON = 0.0000001;
 	

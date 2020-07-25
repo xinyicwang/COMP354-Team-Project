@@ -139,10 +139,12 @@ public class CalculatorGUI implements ActionListener {
         this.makeButton(0, 3, "1", "1", frame);
         this.makeButton(1, 3, "2", "2", frame);
         this.makeButton(2, 3, "3", "3", frame);
-        this.makeButton(0, 4, "0", "0", frame,1,2);
+        this.makeButton(0, 4, "negative", "+/-", frame,1,1);
+        this.makeButton(1, 4, "0", "0", frame,1,1);
         this.makeButton(2, 4, ".", ".", frame);
         this.makeButton(3, 1,"clear","Clear",frame,1,2);
         this.makeButton(5, 1,"ce","CE",frame);
+        
         functionButtons.add(EquationValue.SIN.value, this.makeButton(5, 3, "sincalc", "sin(x)", frame));
         functionButtons.add(EquationValue.E.value, this.makeButton(3, 2, "ecalc", "e^x", frame));
         functionButtons.add(EquationValue.PI.value, this.makeButton(3, 3, "picalc", "π^x", frame));
@@ -319,6 +321,17 @@ public class CalculatorGUI implements ActionListener {
         		}
             	if(!text.contains(".")) {
             		numberInput.setText(text+command);
+            	}
+            	toClear = false;
+        		break;
+        	case "negative":
+        		if(toClear) {
+        			text = "0";
+        		}
+            	if(!text.contains("-")) {
+            		numberInput.setText("-"+text);
+            	}else {
+            		numberInput.setText(text.replace("-", ""));
             	}
             	toClear = false;
         		break;

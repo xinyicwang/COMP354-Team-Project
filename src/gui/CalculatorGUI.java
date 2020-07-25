@@ -101,7 +101,7 @@ public class CalculatorGUI implements ActionListener {
     	stdEquation =  new DummyMultiVariableEquation();
         madEquation =  new DummyMultiVariableEquation();
         powEquation =  new DummyTwoVariableEquation();
-        sinEquation =  new SinCalculator();
+        sinEquation =  new DummySingleVariableEquation();
         epowEquation =  new DummySingleVariableEquation();
         pipowEquation =  new DummySingleVariableEquation();
     	

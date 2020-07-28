@@ -43,6 +43,8 @@ public class PowersOfPI {
 		//Calculates Pi based off the Spigot Algorithm
 		//Adapted code from https:stackoverflow.com/questions/20287513/can-anyone-make-heads-or-tales-of-this-spigot-algorithm-code-pitiny-c
 		//Variables used to calculate pi (therefore named a-i) 
+		
+		/*  Not sure why variables used to calculate pi are not given clear names */
 		int[] a = new int[55];
 		int b = 0, c = 55, d = 0, e = 0, f = 10000, g = 0, h = 0, i = 0;
         String piDigits = "0.";

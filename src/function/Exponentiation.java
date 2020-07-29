@@ -24,6 +24,7 @@ public class Exponentiation {
      * @return exponentiation of base number to the power of exponent number
      */
     public static double power (double base, double exp) throws InvalidInputException{
+    	
     	double result = 1;
     	char sign = 'p'; 	
     	long nthRoot = 1;
@@ -36,14 +37,11 @@ public class Exponentiation {
     		wholeNumber*=10;
     	}
     	
+    	if (wholeNumber < 0)
+    		wholeNumber*=-1;
+    	
     	if(wholeNumber%10 == 1 || wholeNumber%10 == 3 || wholeNumber%10 == 5 || wholeNumber%10 == 7 || wholeNumber%10 == 9)
     		expOdd = true;
-    	
-    	if (base < 0) {
-    		if (counter > 0 && expOdd) {
-    			throw new Exceptions.InvalidInputException("Invalid input: negative base cannot have an odd decimal exponent.");
-    		}
-    	}
     	
     	if (exp < 0) {
     		if (base==0) {
@@ -52,7 +50,13 @@ public class Exponentiation {
     		exp *= -1;
     		sign = 'n';
     	}
-    	    	
+    	
+    	if (base < 0 && sign == 'n') {
+    		if (counter > 0 && expOdd) {
+    			throw new Exceptions.InvalidInputException("Invalid input: negative base cannot have an odd decimal exponent.");
+    		}
+    	}
+    	    	    	
     	if (base==0)
     		return base;
     	
@@ -78,11 +82,14 @@ public class Exponentiation {
      * @return exponentiation of base number to the power of exponent number
      */
      public static double powerInt(double base, long exp) {
-    	double result; 
-        if(exp == 0) 
+    	
+    	 double result; 
+        
+    	if(exp == 0) 
         {
             return 1; 
         }
+        
         result = powerInt(base, exp/2);  
           
         if (exp%2 == 0) 

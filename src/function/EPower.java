@@ -7,6 +7,7 @@ public class EPower {
 	
     /**
      * Function that calculates the exponential of the constant e
+     * @author Thuyohn Thurai Sivagnanam
      * @param exponent: exponent number
      * @return exponential of constant e using Horner's rule to approximate roots
      */

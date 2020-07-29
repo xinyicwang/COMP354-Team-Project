@@ -27,16 +27,32 @@ public class Exponentiation {
     	double result = 1;
     	char sign = 'p'; 	
     	long nthRoot = 1;
+    	double wholeNumber = exp;
+    	int counter = 0;
+    	boolean expOdd = false;
     	
-    	if (exp < 0) {
-    		exp *= -1;
-    		sign = 'n';
-    		
-    		if (base==0) {
-    			throw new Exceptions.InvalidInputException("Invalid input.");
+    	while (wholeNumber%1 != 0) {
+    		counter++;
+    		wholeNumber*=10;
+    	}
+    	
+    	if(wholeNumber%10 == 1 || wholeNumber%10 == 3 || wholeNumber%10 == 5 || wholeNumber%10 == 7 || wholeNumber%10 == 9)
+    		expOdd = true;
+    	
+    	if (base < 0) {
+    		if (counter > 0 && expOdd) {
+    			throw new Exceptions.InvalidInputException("Invalid input: negative base cannot have an odd decimal exponent.");
     		}
     	}
     	
+    	if (exp < 0) {
+    		if (base==0) {
+    			throw new Exceptions.InvalidInputException("Invalid input: 0 cannot be raised to a negative exponent.");
+    		}
+    		exp *= -1;
+    		sign = 'n';
+    	}
+    	    	
     	if (base==0)
     		return base;
     	
@@ -81,11 +97,11 @@ public class Exponentiation {
     }
  
 	/**
-	 * Function that estimates the nth root
-	 * @param base: number to estimate
-	 * @param nthRoot: number of times needed to multiply to find the base
-	 * @return the nth root of the base
-	 */
+	* Function that estimates the nth root
+	* @param base: number to estimate
+	* @param nthRoot: number of times needed to multiply to find the base
+	* @return the nth root of the base
+	*/
     private static double root(double base, long nthRoot) {
     	   	
     	if (nthRoot == 1)
@@ -111,13 +127,13 @@ public class Exponentiation {
     }
     
 	/**
-	 * Function that estimates the root, using the bisection method
-	 * @param upper: upper bound of the set containing the real root
-	 * @param lower: lower bound of the set containing the real root
-	 * @param base: number of the nth root
-	 * @param nthRoot: number of times needed to multiply to find the base
-	 * @return a middle estimate of the root between upper and lower numbers
-	 */
+	* Function that estimates the root, using the bisection method
+	* @param upper: upper bound of the set containing the real root
+	* @param lower: lower bound of the set containing the real root
+	* @param base: number of the nth root
+	* @param nthRoot: number of times needed to multiply to find the base
+	* @return a middle estimate of the root between upper and lower numbers
+	*/
     private static double bisection(double upper, double lower, double base, long nthRoot) {
     	
     	long iteration = 0;

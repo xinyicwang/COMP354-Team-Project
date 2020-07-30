@@ -23,7 +23,7 @@ public class Exponentiation {
      * @param exp: exponent number
      * @return exponentiation of base number to the power of exponent number
      */
-    public static double power (double base, double exp) throws InvalidInputException{
+    public static double power(double base, double exp) throws InvalidInputException {
     	
     	double result = 1;
     	char sign = 'p'; 	
@@ -32,19 +32,19 @@ public class Exponentiation {
     	int counter = 0;
     	boolean expOdd = false;
     	
-    	while (wholeNumber%1 != 0) {
+    	while (wholeNumber % 1 != 0) {
     		counter++;
-    		wholeNumber*=10;
+    		wholeNumber *= 10;
     	}
     	
     	if (wholeNumber < 0)
-    		wholeNumber*=-1;
+    		wholeNumber *= -1;
     	
-    	if(wholeNumber%10 == 1 || wholeNumber%10 == 3 || wholeNumber%10 == 5 || wholeNumber%10 == 7 || wholeNumber%10 == 9)
+    	if (wholeNumber % 10 == 1 || wholeNumber % 10 == 3 || wholeNumber % 10 == 5 || wholeNumber % 10 == 7 || wholeNumber % 10 == 9)
     		expOdd = true;
     	
     	if (exp < 0) {
-    		if (base==0) {
+    		if (base == 0) {
     			throw new Exceptions.InvalidInputException("Invalid input: 0 cannot be raised to a negative exponent.");
     		}
     		exp *= -1;
@@ -57,10 +57,10 @@ public class Exponentiation {
     		}
     	}
     	    	    	
-    	if (base==0)
+    	if (base == 0)
     		return base;
     	
-    	while (exp%1 != 0) {
+    	while (exp % 1 != 0) {
     		exp *= 10;
     		nthRoot *= 10;
     	}
@@ -72,7 +72,7 @@ public class Exponentiation {
     	if (sign == 'p')
     		return result;
     	else
-    		return ((double)1/result);
+    		return ((double) 1 / result);
     }
     
     /**
@@ -83,18 +83,18 @@ public class Exponentiation {
      */
      public static double powerInt(double base, long exp) {
     	
-    	 double result; 
+    	double result; 
         
-    	if(exp == 0) 
+    	if (exp == 0) 
         {
             return 1; 
         }
         
-        result = powerInt(base, exp/2);  
+        result = powerInt(base, exp / 2);  
           
-        if (exp%2 == 0) 
+        if (exp % 2 == 0) 
         {
-            return result*result; 
+            return result * result; 
         }
         else
         { 

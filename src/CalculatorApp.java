@@ -26,10 +26,10 @@ public class CalculatorApp {
 				
 		//Test x^y
 		System.out.println("==========Testing x^y==========");
-		System.out.println("3^4.5 = " + Exponentiation.power(3, 4.5));
-		System.out.println("-25^-2 = " + Exponentiation.power(-25,-2));		
-		System.out.println("-20.5^5 = " + Exponentiation.power(-20.5,5));
-		System.out.println("5^2.6 = " + Exponentiation.power(5,2.6));
+		System.out.println("3^4.5 = " + Exponentiation.calculatePower(3, 4.5));
+		System.out.println("-25^-2 = " + Exponentiation.calculatePower(-25,-2));		
+		System.out.println("-20.5^5 = " + Exponentiation.calculatePower(-20.5,5));
+		System.out.println("5^2.6 = " + Exponentiation.calculatePower(5,2.6));
 		System.out.println("\n");
 		System.out.println(Math.pow(Math.E,100));
 

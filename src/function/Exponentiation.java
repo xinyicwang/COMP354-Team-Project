@@ -8,6 +8,8 @@
  * Due: August 10th 2020
  * 
  * Copyright notice
+ * Consulted source:
+ * https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
  */
 
 package function;
@@ -17,13 +19,13 @@ import Exceptions.*;
 public class Exponentiation {
 
 	
-    /**
-     * Function that calculates the exponential given a base number and a power number (adjusting for rational numbers)
-     * @param base: base number
-     * @param exp: exponent number
-     * @return exponentiation of base number to the power of exponent number
-     */
-    public static double power(double base, double exp) throws InvalidInputException {
+	/**
+	* Function that calculates the exponential given a base number and a power number (adjusting for rational numbers)
+	* @param base: base number
+	* @param exp: exponent number
+	* @return exponentiation of base number to the power of exponent number
+	*/
+	public static double calculatePower(double base, double exp) throws InvalidInputException {
     	
     	double result = 1;
     	char sign = 'p'; 	
@@ -37,11 +39,13 @@ public class Exponentiation {
     		wholeNumber *= 10;
     	}
     	
-    	if (wholeNumber < 0)
+    	if (wholeNumber < 0) {
     		wholeNumber *= -1;
+    	}
     	
-    	if (wholeNumber % 10 == 1 || wholeNumber % 10 == 3 || wholeNumber % 10 == 5 || wholeNumber % 10 == 7 || wholeNumber % 10 == 9)
+    	if (wholeNumber % 10 == 1 || wholeNumber % 10 == 3 || wholeNumber % 10 == 5 || wholeNumber % 10 == 7 || wholeNumber % 10 == 9) {
     		expOdd = true;
+    	}
     	
     	if (exp < 0) {
     		if (base == 0) {
@@ -57,31 +61,35 @@ public class Exponentiation {
     		}
     	}
     	    	    	
-    	if (base == 0)
+    	if (base == 0) {
     		return base;
-    	
+    	}
+    		
     	while (exp % 1 != 0) {
     		exp *= 10;
     		nthRoot *= 10;
     	}
     	
-    	double newBase = root(base, nthRoot);
+    	double newBase = findRoot(base, nthRoot);
     	    	
-    	result = powerInt(newBase, (long) exp);
+    	result = calculateIntegerPower(newBase, (long) exp);
     	
-    	if (sign == 'p')
+    	if (sign == 'p') {
     		return result;
-    	else
+    	}
+    	else {
     		return ((double) 1 / result);
+    	}
     }
     
-    /**
-     * Function that calculates the exponential given a base number and an integer power number, using recursion
-     * @param base: base number
-     * @param exp: exponent number
-     * @return exponentiation of base number to the power of exponent number
-     */
-     public static double powerInt(double base, long exp) {
+	/**
+	* Function that calculates the exponential given a base number and an integer power number, using recursion
+	* Inspired by https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+	* @param base: base number
+	* @param exp: exponent number
+	* @return exponentiation of base number to the power of exponent number
+	*/
+	public static double calculateIntegerPower(double base, long exp) {
     	
     	double result; 
         
@@ -90,7 +98,7 @@ public class Exponentiation {
             return 1; 
         }
         
-        result = powerInt(base, exp / 2);  
+        result = calculateIntegerPower(base, exp / 2);  
           
         if (exp % 2 == 0) 
         {
@@ -109,27 +117,30 @@ public class Exponentiation {
 	* @param nthRoot: number of times needed to multiply to find the base
 	* @return the nth root of the base
 	*/
-    private static double root(double base, long nthRoot) {
+	private static double findRoot(double base, long nthRoot) {
     	   	
-    	if (nthRoot == 1)
+    	if (nthRoot == 1) {
     		return base;
+    	}
     	
     	double upper = 1;
     	double lower = 0;
     	double baseEstimate = 1;
     	
     	for (double root = 1; baseEstimate < base; root++) {
-    		baseEstimate *= powerInt(root, nthRoot);
+    		baseEstimate *= calculateIntegerPower(root, nthRoot);
 
-    		if (base == baseEstimate) 
+    		if (base == baseEstimate) {
     			return root;
-    		else 
+    		}
+    		else { 
     			upper = root;
+    		}
     	}
     	
     	lower = upper - 1;
     	
-    	return bisection(upper, lower, base, nthRoot);
+    	return estimateRoot(upper, lower, base, nthRoot);
     	
     }
     
@@ -141,7 +152,7 @@ public class Exponentiation {
 	* @param nthRoot: number of times needed to multiply to find the base
 	* @return a middle estimate of the root between upper and lower numbers
 	*/
-    private static double bisection(double upper, double lower, double base, long nthRoot) {
+	private static double estimateRoot(double upper, double lower, double base, long nthRoot) {
     	
     	long iteration = 0;
     	double epsilon = 0.0000000001;
@@ -149,26 +160,31 @@ public class Exponentiation {
     	double middle = 1;
     	
     	double absDifference = upper - lower;
-    	if (absDifference < 0)
+    	if (absDifference < 0) {
     		absDifference *= -1;
+    	}
     	
     	while (absDifference > epsilon) {
 
     		middle = (upper+lower)/2;
-    		middleEstimate = powerInt(middle, nthRoot);
+    		middleEstimate = calculateIntegerPower(middle, nthRoot);
     		
-    		if (middleEstimate > base) 
+    		if (middleEstimate > base) {
     			upper = middle;
-    		else
+    		}
+    		else {
     			lower = middle;
+    		}
     		
     		absDifference = upper - lower;
-    		if (absDifference < 0)
+    		if (absDifference < 0) {
         		absDifference *= -1;
+    		}
     		
     		iteration++;
-    		if (iteration == 1000)
+    		if (iteration == 1000) {
     			break;
+    		}
     	}
     	
     	return middle;

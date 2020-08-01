@@ -1,4 +1,4 @@
-package gui;
+package function;
 
 /**
  * Class to calculate the sin of a variable

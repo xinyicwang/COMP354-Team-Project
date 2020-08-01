@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/standard-deviation
 /*
  * 
  * 
@@ -471,6 +474,7 @@ public class CalculatorGUI implements ActionListener {
     
 
 }
+<<<<<<< HEAD
 =======
 /*
  * 
@@ -932,3 +936,5 @@ public class CalculatorGUI implements ActionListener {
 
 }
 >>>>>>> origin/Thuyohn's_Branch
+=======
+>>>>>>> origin/standard-deviation

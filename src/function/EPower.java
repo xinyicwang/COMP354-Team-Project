@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * EPower
  * Team J - COMP 354
@@ -14,15 +15,23 @@ package function;
 
 import Exceptions.*;
 
+=======
+package function;
+
+>>>>>>> origin/standard-deviation
 public class EPower {
 	
     /**
      * Function that calculates the exponential of the constant e
+<<<<<<< HEAD
      * @author Thuyohn Thurai Sivagnanam
+=======
+>>>>>>> origin/standard-deviation
      * @param exponent: exponent number
      * @return exponential of constant e using Horner's rule to approximate roots
      */
 
+<<<<<<< HEAD
 	public static double ePower(double exponent) throws InfinityException, InvalidInputException{
 		 
 		/*
@@ -42,6 +51,20 @@ public class EPower {
             pN = 1 + exponent/N*pN;
         }
         
+=======
+	public static double ePower(double exponent) {
+        
+		// N is a random number to get the right precision.
+        int N = 1000;
+        //pN will be the polynomial that you calculate iteratively
+        double pN = 1 + exponent/N;
+        
+        // with the use of the Horner's rule to approximated the roots.
+        // Starting from the most innermost brackets. 
+        while (--N >= 1) {
+            pN = 1 + exponent/N*pN;
+        }
+>>>>>>> origin/standard-deviation
         return pN;
 	}
 }

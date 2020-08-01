@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/standard-deviation
 package gui;
 
 public class OverflowException extends Exception {
@@ -28,6 +31,7 @@ public class OverflowException extends Exception {
 	}
 
 }
+<<<<<<< HEAD
 =======
 package gui;
 
@@ -59,3 +63,5 @@ public class OverflowException extends Exception {
 
 }
 >>>>>>> origin/Thuyohn's_Branch
+=======
+>>>>>>> origin/standard-deviation

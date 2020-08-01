@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/standard-deviation
 package gui;
 
 public class DummySingleVariableEquation implements OneVariableEquation {
@@ -10,6 +13,7 @@ public class DummySingleVariableEquation implements OneVariableEquation {
 	}
 
 }
+<<<<<<< HEAD
 =======
 package gui;
 
@@ -23,3 +27,5 @@ public class DummySingleVariableEquation implements OneVariableEquation {
 
 }
 >>>>>>> origin/Thuyohn's_Branch
+=======
+>>>>>>> origin/standard-deviation

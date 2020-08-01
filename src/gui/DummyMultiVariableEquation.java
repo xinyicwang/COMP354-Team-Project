@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/standard-deviation
 package gui;
 
 import java.util.List;
@@ -17,6 +20,7 @@ public class DummyMultiVariableEquation implements MultiVariableEquation {
 	}
 
 }
+<<<<<<< HEAD
 =======
 package gui;
 
@@ -37,3 +41,5 @@ public class DummyMultiVariableEquation implements MultiVariableEquation {
 
 }
 >>>>>>> origin/Thuyohn's_Branch
+=======
+>>>>>>> origin/standard-deviation

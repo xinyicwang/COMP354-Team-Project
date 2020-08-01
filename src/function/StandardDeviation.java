@@ -1,5 +1,17 @@
 package function;
+<<<<<<< HEAD
 
+=======
+/**
+ * Class for calculating the Mean Absolute Deviation.
+ * Has a function that calculates the absolute value of a number, 
+ * and a function that calculates the sum of an array.
+ * @version 24 July 2020
+ * @author Cindy Wang 40181985
+ */
+
+/* Implement this class by calling StandardDeviation.standardDeviation(arr) */
+>>>>>>> origin/standard-deviation
 public class StandardDeviation {
 
     /** 
@@ -57,6 +69,7 @@ public class StandardDeviation {
     /**
      * Function that calculates the variance of an array of numbers
      * @param arr: array of doubles
+<<<<<<< HEAD
      * @param n: length of the array
      * @return the variance of the array
      */
@@ -72,16 +85,39 @@ public class StandardDeviation {
             sqdiff += (arr[i] - mean) * (arr[i] - mean);
         }
         return (double) sqdiff / n;
+=======
+     * @return the variance of the array
+     */
+    private static double variance(double arr[]) {
+        double sum = 0;
+        for(int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        double mean = (double) sum / (double) (arr.length);
+        // sum squared difference with mean
+        double sqdiff = 0;
+        for(int i = 0; i < arr.length; i++) {
+            sqdiff += (arr[i] - mean) * (arr[i] - mean);
+        }
+        return (double) sqdiff / arr.length;
+>>>>>>> origin/standard-deviation
     }
 
     /**
      * Function that calculates the standard deviation of an array of numbers
      * @param arr: array of doubles
+<<<<<<< HEAD
      * @param n: length of the array
      * @return the standard deviation of the array
      */
     public static double standardDeviation(double arr[], int n) {
         return sqrt(variance(arr, n));
+=======
+     * @return the standard deviation of the array
+     */
+    public static double standardDeviation(double arr[]) {
+        return sqrt(variance(arr));
+>>>>>>> origin/standard-deviation
     }
 
 	

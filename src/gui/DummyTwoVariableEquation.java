@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/standard-deviation
 package gui;
 
 public class DummyTwoVariableEquation implements TwoVariableEquation {
@@ -10,6 +13,7 @@ public class DummyTwoVariableEquation implements TwoVariableEquation {
 	}
 
 }
+<<<<<<< HEAD
 =======
 package gui;
 
@@ -23,3 +27,5 @@ public class DummyTwoVariableEquation implements TwoVariableEquation {
 
 }
 >>>>>>> origin/Thuyohn's_Branch
+=======
+>>>>>>> origin/standard-deviation

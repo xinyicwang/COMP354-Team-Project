@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Exponentiation
  * Team J - COMP 354
@@ -51,10 +52,30 @@ public class Exponentiation {
     		if (base == 0) {
     			throw new Exceptions.InvalidInputException("Invalid input: 0 cannot be raised to a negative exponent.");
     		}
+=======
+package function;
+
+public class Exponentiation {
+
+	
+    /**
+     * Function that calculates the exponential given a base number and an integer power number
+     * @param base: base number
+     * @param exp: exponent number
+     * @return exponentiation of base number to the power of exponent number
+     */
+	
+    public static double powerInt (double base, double exp) {
+    	int result = 1;
+    	char sign = 'p'; 	
+    	
+    	if (exp < 0) {
+>>>>>>> origin/standard-deviation
     		exp *= -1;
     		sign = 'n';
     	}
     	
+<<<<<<< HEAD
     	if (base < 0 && sign == 'n') {
     		if (counter > 0 && expOdd) {
     			throw new Exceptions.InvalidInputException("Invalid input: negative base cannot have an odd decimal exponent.");
@@ -188,6 +209,19 @@ public class Exponentiation {
     	}
     	
     	return middle;
+=======
+    	double remainder = exp % 1;
+    	exp = exp - remainder;
+    		
+    	for (int i = 0; i < exp; i++) {
+    		result *= base;
+    	}
+    	    	
+    	if (sign == 'p')
+    		return result;
+    	else
+    		return ((double)1/result);
+>>>>>>> origin/standard-deviation
     }
     	
 } 

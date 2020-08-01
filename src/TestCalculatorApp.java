@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * TestCalculator
  * Team J - COMP 354
@@ -10,17 +11,23 @@
  * Copyright notice
  */
 
+=======
+>>>>>>> origin/standard-deviation
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+<<<<<<< HEAD
 import Exceptions.InfinityException;
+=======
+>>>>>>> origin/standard-deviation
 import function.PowersOfPI;
 import function.EPower;
 import function.Exponentiation;
 import function.StandardDeviation;
 import function.Mean;
 
+<<<<<<< HEAD
 /**
  * Tests functions with powers with given bases & exponents
  * Compares with Java Math function
@@ -69,6 +76,34 @@ class TestCalculatorApp {
 	void test4PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
 		assertEquals(Math.pow(Math.PI, 100), calculator.calculatePowersOfPi(100), DELTA);
+=======
+class TestCalculatorApp {
+
+	final double DELTA = 0.0000001;
+	
+	@Test
+	void test1PI() {
+		PowersOfPI calculator = new PowersOfPI();
+		assertEquals(Math.pow(Math.PI, 0), calculator.powersOfPi(0), DELTA);
+	}
+
+	@Test
+	void test2PI() {
+		PowersOfPI calculator = new PowersOfPI();
+		assertEquals(Math.pow(Math.PI, 2.1), calculator.powersOfPi(2.1), DELTA);
+	}
+
+	@Test
+	void test3PI() {
+		PowersOfPI calculator = new PowersOfPI();
+		assertEquals(Math.pow(Math.PI, -1), calculator.powersOfPi(-1), DELTA);
+	}
+
+	@Test
+	void test4PI() {
+		PowersOfPI calculator = new PowersOfPI();
+		assertEquals(Math.pow(Math.PI, 100), calculator.powersOfPi(100), DELTA);
+>>>>>>> origin/standard-deviation
 	}
 	
 	@Test
@@ -119,4 +154,8 @@ class TestCalculatorApp {
 		assertEquals(Math.pow(2.2, 100), calculator.powerInt(4, 100), DELTA);
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/standard-deviation

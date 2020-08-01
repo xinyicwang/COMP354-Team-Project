@@ -7,7 +7,7 @@ package function;
  * @author Cindy Wang 40181985
  */
 
-// Implement this class by calling StandardDeviation.standardDeviation(arr)
+/* Implement this class by calling StandardDeviation.standardDeviation(arr) */
 public class StandardDeviation {
 
     /** 

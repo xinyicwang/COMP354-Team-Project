@@ -36,6 +36,7 @@ public class CalculatorGUI implements ActionListener {
 	 */
 	
 	final int MAX_VALUE = 1000000000;
+	final int MAX_CHARACTERS = 20;
 	
 	boolean toClear;
 	boolean errorDisplayed;
@@ -315,7 +316,7 @@ public class CalculatorGUI implements ActionListener {
         	}
         	String result = text+command;
         	double d = Double.parseDouble(result);
-        	if(Math.abs(d) < MAX_VALUE) {
+        	if(Math.abs(d) < MAX_VALUE && result.length() < MAX_CHARACTERS) {
         		numberInput.setText(text+command);
         	}
             toClear = false;

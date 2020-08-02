@@ -17,6 +17,12 @@ package function;
 import Exceptions.*;
 import gui.TwoVariableEquation;
 
+/**
+ * Class that calculates the power function (x^y)
+ * Utilizes the bisection method to estimate the root for decimal exponents
+ * @version 02 August 2020
+ * @author Francis Truong 40087705
+ */
 public class Exponentiation implements TwoVariableEquation {
 
 	/*Implement this class by calling calculatePower(double base, double exp)*/

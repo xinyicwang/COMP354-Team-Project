@@ -1,6 +1,10 @@
 package function;
 
-public class Mean {
+import java.util.List;
+
+import gui.MultiVariableEquation;
+
+public class Mean implements MultiVariableEquation {
 
 	/**
 	* Function that calculates the absolute value of a number
@@ -50,6 +54,16 @@ public class Mean {
 	        
 	     return abdiff;
 		
+	}
+
+	@Override
+	public double calculate(List<Double> x) {
+		int size = x.size();
+		double[] items = new double[size];
+		for(int i = 0; i < x.size(); i ++) {
+			items[i] = x.get(i);
+		}
+		return Mean.mad(items, size);
 	}
 
 	

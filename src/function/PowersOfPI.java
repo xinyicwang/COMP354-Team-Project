@@ -16,6 +16,7 @@
 package function;
 
 import Exceptions.*;
+import gui.OneVariableEquation;
 
 /**
  * Class for calculating the transcendental function PI^x.
@@ -25,7 +26,7 @@ import Exceptions.*;
  * @version 24 July 2020
  * @author Briana Toia 40097889
  */
-public class PowersOfPI {
+public class PowersOfPI implements OneVariableEquation{
 
 	/*Implement this class by calling calculatePowersOfPi(double exp)*/
 	
@@ -227,4 +228,10 @@ public class PowersOfPI {
 		else { 
 			return base * temp * temp; 
 		} 
+	}
+
+	@Override
+	public double calculate(double x) throws InfinityException, InvalidInputException {
+		return PowersOfPI.calculatePowersOfPi(x);
 	}  
+}

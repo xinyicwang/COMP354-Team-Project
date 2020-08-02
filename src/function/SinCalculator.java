@@ -1,5 +1,7 @@
 package function;
 
+import gui.OneVariableEquation;
+
 /**
  * Class to calculate the sin of a variable
  * 
@@ -9,7 +11,7 @@ package function;
  *
  */
 
-public class SinCalculator {
+public class SinCalculator implements OneVariableEquation{
 	
 	private static final double  EPSILON = 0.0000001;
 	

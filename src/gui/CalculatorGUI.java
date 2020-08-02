@@ -7,6 +7,11 @@ package gui;
 import function.*;
 
 import javax.swing.*;
+
+import Exceptions.InfinityException;
+import Exceptions.InvalidInputException;
+import Exceptions.OverflowException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -98,12 +103,12 @@ public class CalculatorGUI implements ActionListener {
     	
     	
     	/*   Add your equations here */
-    	stdEquation =  new DummyMultiVariableEquation();
-        madEquation =  new DummyMultiVariableEquation();
-        powEquation =  new DummyTwoVariableEquation();
-        sinEquation =  new DummySingleVariableEquation();
-        epowEquation =  new DummySingleVariableEquation();
-        pipowEquation =  new DummySingleVariableEquation();
+    	stdEquation =  new StandardDeviation();
+        madEquation =  new Mean();
+        powEquation =  new Exponentiation();
+        sinEquation =  new SinCalculator();
+        epowEquation =  new EPower();
+        pipowEquation =  new PowersOfPI();
     	
         JFrame frame = new JFrame("Transcendental Function Calculator");
         frame.setSize(300,300);
@@ -266,7 +271,11 @@ public class CalculatorGUI implements ActionListener {
     	}
     }
     
-    
+    /** 
+     * {@inheritDoc} 
+     * 
+     * 
+     * */
     @Override
     public void actionPerformed(ActionEvent e) {
     	
@@ -391,7 +400,13 @@ public class CalculatorGUI implements ActionListener {
         		case TWO:
         			double numA = inputs.get(0);
         			double numB = num;
-        			res = twoEquation.calculate(numA, numB);
+				try {
+					res = twoEquation.calculate(numA, numB);
+				} catch (InvalidInputException e1) {
+					
+					numberInput.setText(e1.getMessage());
+    				errorDisplayed = true;
+				}
         			try {
         				numberInput.setText(doubleToString(res));
         			}
@@ -437,7 +452,17 @@ public class CalculatorGUI implements ActionListener {
 	        case NONE:
 	        	return;
 	        case ONE:
-            	res = singleEquation.calculate(num);
+				
+				try {
+					res = singleEquation.calculate(num);
+				} catch (InfinityException e1) {
+					numberInput.setText("Overflow Error!");
+					e1.printStackTrace();
+				} catch (InvalidInputException e1) {
+					numberInput.setText(e1.getMessage());
+					e1.printStackTrace();
+				}
+				
             	try {
     				numberInput.setText(doubleToString(res));
     			}

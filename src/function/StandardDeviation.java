@@ -1,4 +1,9 @@
 package function;
+
+import java.util.List;
+
+import gui.MultiVariableEquation;
+
 /**
  * Class for calculating the Mean Absolute Deviation.
  * Has a function that calculates the absolute value of a number, 
@@ -8,7 +13,7 @@ package function;
  */
 
 /* Implement this class by calling StandardDeviation.standardDeviation(arr) */
-public class StandardDeviation {
+public class StandardDeviation implements MultiVariableEquation {
 
     /** 
      * Function that calculates the absolute value of a number
@@ -91,6 +96,16 @@ public class StandardDeviation {
     public static double standardDeviation(double arr[], int n) {
         return sqrt(variance(arr, n));
     }
+
+	@Override
+	public double calculate(List<Double> x) {
+		int size = x.size();
+		double[] items = new double[size];
+		for(int i = 0; i < x.size(); i ++) {
+			items[i] = x.get(i);
+		}
+		return StandardDeviation.standardDeviation(items, size);
+	}
 
 	
 }

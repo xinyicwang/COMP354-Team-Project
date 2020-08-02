@@ -13,8 +13,9 @@
 package function;
 
 import Exceptions.*;
+import gui.OneVariableEquation;
 
-public class EPower {
+public class EPower implements OneVariableEquation{
 	
     /**
      * Function that calculates the exponential of the constant e
@@ -43,5 +44,10 @@ public class EPower {
         }
         
         return pN;
+	}
+
+	@Override
+	public double calculate(double x) throws InfinityException, InvalidInputException {
+		return EPower.ePower(x);
 	}
 }

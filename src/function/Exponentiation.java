@@ -19,6 +19,7 @@ import gui.TwoVariableEquation;
 
 public class Exponentiation implements TwoVariableEquation {
 
+	/*Implement this class by calling calculatePower(double base, double exp)*/
 	
 	/**
 	* Function that calculates the exponential given a base number and a power number (adjusting for rational numbers)

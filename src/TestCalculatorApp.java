@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import Exceptions.InfinityException;
+import Exceptions.InvalidInputException;
 import function.PowersOfPI;
 import function.EPower;
 import function.Exponentiation;
@@ -70,53 +71,92 @@ class TestCalculatorApp {
 		PowersOfPI calculator = new PowersOfPI();
 		assertEquals(Math.pow(Math.PI, 100), calculator.calculatePowersOfPi(100), DELTA);
 	}
-	
+	/**
+	 * Tests e^0
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test1E() {
+	void test1E() throws InfinityException, InvalidInputException {
 		EPower calculator = new EPower();
 		assertEquals(Math.pow(Math.E, 0), calculator.ePower(0), DELTA);
 	}
 
+	/**
+	 * Tests e^2.1
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test2E() {
+	void test2E() throws InfinityException, InvalidInputException { 
 		EPower calculator = new EPower();
 		assertEquals(Math.pow(Math.E, 2.1), calculator.ePower(2.1), DELTA);
 	}
 
+	/**
+	 * Tests e^-1
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test3E() {
+	void test3E() throws InfinityException, InvalidInputException {
 		EPower calculator = new EPower();
 		assertEquals(Math.pow(Math.E, -1), calculator.ePower(-1), DELTA);
 	}
 
+	/**
+	 * Tests e^100
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test4E() {
+	void test4E() throws InfinityException, InvalidInputException {
 		EPower calculator = new EPower();
 		assertEquals(Math.pow(Math.E, 100), calculator.ePower(100), DELTA);
 	}
 	
+	/**
+	 * Tests 5^0
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test1XY() {
+	void test1XY() throws InvalidInputException {
 		Exponentiation calculator = new Exponentiation();
-		assertEquals(Math.pow(5, 0), calculator.powerInt(5,0), DELTA);
+		assertEquals(Math.pow(5, 0), calculator.calculatePower(5,0), DELTA);
 	}
 
+	/**
+	 * Tests 3^2.1
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test2XY() {
+	void test2XY() throws InvalidInputException{
 		Exponentiation calculator = new Exponentiation();
-		assertEquals(Math.pow(3, 2.1), calculator.powerInt(3, 2.1), DELTA);
+		assertEquals(Math.pow(3, 2.1), calculator.calculatePower(3, 2.1), DELTA);
 	}
 
+	/**
+	 * Tests 2.2^-1
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test3XY() {
+	void test3XY() throws InvalidInputException{
 		Exponentiation calculator = new Exponentiation();
-		assertEquals(Math.pow(2, -1), calculator.powerInt(2.2, -1), DELTA);
+		assertEquals(Math.pow(2, -1), calculator.calculatePower(2.2, -1), DELTA);
 	}
 
+	/**
+	 * Tests 4^100
+	 * @throws InfinityException
+	 * @throws InvalidInputException
+	 */
 	@Test
-	void test4XY() {
+	void test4XY() throws InvalidInputException{
 		Exponentiation calculator = new Exponentiation();
-		assertEquals(Math.pow(2.2, 100), calculator.powerInt(4, 100), DELTA);
+		assertEquals(Math.pow(2.2, 100), calculator.calculatePower(4, 100), DELTA);
 	}
 
 }

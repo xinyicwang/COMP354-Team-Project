@@ -32,31 +32,49 @@ class TestCalculatorApp {
 
 	final double DELTA = 0.0000001; //accuracy 
 	
-	@Test
+	/**
+	 * function that returns average of the values in the array.
+	 * @param arr
+	 * @return average value as a double
+	 */
+   	private static double mean(double arr[]) {
+		double sum = 0;
+
+		for(int i = 0; i < arr.length; i++) {
+		    sum += arr[i];
+		}
+
+		double mean = (double)sum / (double)arr.length;
+
+		return mean;
+    	}
+	
 	/**
 	 * Tests PI^0 
 	 * @throws InfinityException
 	 */
+	@Test
 	void test1PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
 		assertEquals(Math.pow(Math.PI, 0), calculator.calculatePowersOfPi(0), DELTA);
 	}
 
-	@Test
 	/**
 	 * Tests PI^2.1
 	 * @throws InfinityException
 	 */
+	@Test
 	void test2PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
 		assertEquals(Math.pow(Math.PI, 2.1), calculator.calculatePowersOfPi(2.1), DELTA);
 	}
 
-	@Test
+	
 	/**
 	 * Tests PI^-1
 	 * @throws InfinityException
 	 */
+	@Test
 	void test3PI() throws InfinityException {
 		PowersOfPI calculator = new PowersOfPI();
 		assertEquals(Math.pow(Math.PI, -1), calculator.calculatePowersOfPi(-1), DELTA);
@@ -158,5 +176,71 @@ class TestCalculatorApp {
 		Exponentiation calculator = new Exponentiation();
 		assertEquals(Math.pow(2.2, 100), calculator.calculatePower(4, 100), DELTA);
 	}
+	
+
+	/**
+	*  Test valid input 
+	*  comparing with the answer found using MAD calculator
+	*/
+	@Test
+	void test1Mean() {
+		double arr[] = {10.0, 15.0, 15.0, 17.0, 18.0, 21.0};
+
+		//Used MAD calculator to verify the results.
+		assertEquals(2.66667, Mean.mad(arr), 0.00001);
+	}
+    
+	
+	/**
+	 *  Tests valid negative input 
+	 *  comparing with the answer found using MAD calculator
+	 */
+	@Test
+    	void test2Mean() {
+		double arr[] = {10.0, -15.0, 17.0, -17.0, 18.0, 21.0};
+
+		//Used MAD calculator to verify the results.
+		assertEquals(14.44444, Mean.mad(arr), 0.00001);
+    	}
+    
+	
+	/**
+	*  Tests one valid input 
+	*  comparing with the answer found using MAD calculator
+	*/
+	@Test
+	void test3Mean() {
+		double arr[] = {10};
+
+		double absSum = 0;
+
+		for(int i = 0; i < arr.length; i++) {
+		    absSum += absSum + Math.abs(arr[i] - mean(arr));
+		}
+
+		double res = absSum;
+
+		assertEquals(res, Mean.mad(arr), 0.00001);
+	    }
+
+	
+	/**
+	*  Tests one valid negative input 
+	*  comparing with the answer found using MAD calculator
+	*/
+	@Test
+	void test4Mean() {
+		double arr[] = {-21.5};
+
+		double absSum = 0;
+
+		for(int i = 0; i < arr.length; i++) {
+		    absSum += absSum + Math.abs(arr[i] - mean(arr));
+		}
+
+		double res = absSum;
+
+		assertEquals(res, Mean.mad(arr), 0.00001);
+	    }
 
 }

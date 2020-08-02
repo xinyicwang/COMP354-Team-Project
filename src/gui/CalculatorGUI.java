@@ -46,6 +46,7 @@ public class CalculatorGUI implements ActionListener {
 	
 	ArrayList<String> functionButtonLabels;
 	ArrayList<JButton> functionButtons;
+	JButton equalsButton;
 	JTextField numberInput;
     
 	MultiVariableEquation multiEquation;
@@ -156,7 +157,10 @@ public class CalculatorGUI implements ActionListener {
         functionButtons.add(EquationValue.POW.value, this.makeButton(4, 3, "powcalc", "x^y", frame));
         functionButtons.add(EquationValue.MAD.value, this.makeButton(5, 2, "madcalc", "MAD", frame));
         functionButtons.add(EquationValue.STDEV.value, this.makeButton(4, 2, "stdcalc", "stdev", frame));
-        this.makeButton(3, 4, "equals", "=", frame);
+        equalsButton = this.makeButton(3, 4, "equals", "=", frame);
+        
+        equalsButton.setEnabled(false);
+        
         
         
         for (int i = 0; i < functionButtons.size();i++) {
@@ -223,7 +227,7 @@ public class CalculatorGUI implements ActionListener {
             	functionButtons.get(i).setEnabled(toggle);
             }
         }
-    	
+    	equalsButton.setEnabled(!toggle);
     	
     }
     
@@ -237,6 +241,7 @@ public class CalculatorGUI implements ActionListener {
             	functionButtons.get(i).setEnabled(toggle);
             
         }
+    	equalsButton.setEnabled(!toggle);
     }
     
     

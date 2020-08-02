@@ -1,4 +1,13 @@
 /*
+ * CalculatorGUI
+ * Team J - COMP 354
+ * Concordia University 
+ * 
+ * Version: Iteration II
+ *
+ * Due: August 10th 2020
+ * 
+ * Copyright notice
  * 
  * 
  */

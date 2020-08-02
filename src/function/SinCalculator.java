@@ -1,3 +1,17 @@
+/*
+ * SinCalculator
+ * Team J - COMP 354
+ * Concordia University 
+ * 
+ * Version: Iteration II
+ *
+ * Due: August 10th 2020
+ * 
+ * Copyright notice
+ * Written with the inspiration of one source
+ * https://www.homeschoolmath.net/teaching/sine_calculator.php
+ * 
+ */
 package function;
 
 import gui.OneVariableEquation;
@@ -11,39 +25,16 @@ import gui.OneVariableEquation;
  *
  */
 
+
 public class SinCalculator implements OneVariableEquation{
 	
-	private static final double  EPSILON = 0.0000001;
+
+	/* Implement this class by calling calculate(double num) */
 	
+	private static final double  EPSILON = 0.0000001;
 	private double pi;
 	
-	public static void main(String[] args) {
-
-		
-		
-		//Test cases todo:
-		
-		/*
-		SinCalculator scalc = new SinCalculator();
-		
-		assertEquals(Math.PI,scalc.pi,EPSILON);
-		
-		assertEquals(Math.sin(0),scalc.calculate(0),EPSILON);
-		assertEquals(Math.sin(1),scalc.calculate(1),EPSILON);
-		assertEquals(Math.sin(-1),scalc.calculate(-1),EPSILON);
-		assertEquals(Math.sin(-5),scalc.calculate(-5),EPSILON);
-		assertEquals(Math.sin(5),scalc.calculate(5),EPSILON);
-		assertEquals(Math.sin(Math.PI),scalc.calculate(Math.PI),EPSILON);
-		assertEquals(Math.sin(Math.PI * -1),scalc.calculate(Math.PI*-1),EPSILON);
-		assertEquals(Math.sin(Math.PI * -2),scalc.calculate(Math.PI*-2),EPSILON);
-		assertEquals(Math.sin(Math.PI * 2),scalc.calculate(Math.PI*2),EPSILON);
-		*/
-		
-
-		
-		//assertEquals(Math.pow(Math.PI, 0), calculator.powersOfPi(0), DELTA);
-		
-	}
+	
 	
 	/**
 	 * Constructor

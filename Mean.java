@@ -53,24 +53,23 @@ public class Mean {
 	/**
     	* Function that calculates the mean absolute deviation of an array of numbers
      	* @param arr: array of doubles
-     	* @param n: length of the array
      	* @return the mean absolute deviation of the array
      	*/
 		
-	public static double mad(double arr[], int n)
+	public static double mad(double arr[])
 	{
 		 
-	     double mean = sum(arr) / (double) n;
+	     double mean = sum(arr) / arr.length;
 	     
 	     double abdiff = 0;
 	     
 	     /*Iterates through the array arr[], finds the absolute value at the index i and subtract the mean value from it.*/
 	     
-	     for(int i = 0; i < n; i++) {
+	     for(int i = 0; i < arr.length; i++) {
 	            abdiff += abs((arr[i] - mean)) ;
 	        }
 	     
-	     abdiff = (abdiff / (double) n);
+	     abdiff = (abdiff / arr.length);
 	        
 	     return abdiff;
 		

@@ -5,14 +5,26 @@ import java.util.List;
 import gui.MultiVariableEquation;
 
 /**
- * Class for calculating the Mean Absolute Deviation.
+ * Class for calculating the Standard Deviation.
  * Has a function that calculates the absolute value of a number, 
  * and a function that calculates the sum of an array.
  * @version 24 July 2020
  * @author Cindy Wang 40181985
  */
 
-/* Implement this class by calling StandardDeviation.standardDeviation(arr) */
+/*
+ * Standard deviation
+ * Team J - COMP 354
+ * Concordia University 
+ * 
+ * Version: Iteration II
+ *
+ * Due: August 10th 2020
+ * 
+ * Copyright notice
+ * Written with the inspiration of 
+ * https://stackoverflow.com/questions/19611198/finding-square-root-without-using-sqrt-function
+ */
 public class StandardDeviation implements MultiVariableEquation {
 
     /** 

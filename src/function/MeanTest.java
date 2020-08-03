@@ -24,7 +24,7 @@ class MeanTest {
         double arr[] = {10.0, 15.0, 15.0, 17.0, 18.0, 21.0};
 
         //Used MAD calculator to verify the results.
-        assertEquals(2.66667, Mean.mad(arr, arr.length), 0.00001);
+        assertEquals(2.66667, Mean.mad(arr), 0.00001);
     }
     
     // test valid input with answer found using MAD calculator
@@ -32,7 +32,7 @@ class MeanTest {
         double arr[] = {10.0, -15.0, 17.0, -17.0, 18.0, 21.0};
 
         //Used MAD calculator to verify the results.
-        assertEquals(14.44444, Mean.mad(arr, arr.length), 0.00001);
+        assertEquals(14.44444, Mean.mad(arr), 0.00001);
     }
     
     // test one input
@@ -48,7 +48,7 @@ class MeanTest {
 
         double res = absSum;
 
-        assertEquals(res, Mean.mad(arr, arr.length), 0.00001);
+        assertEquals(res, Mean.mad(arr), 0.00001);
     }
     
     // test negative input
@@ -64,7 +64,7 @@ class MeanTest {
 
         double res = absSum;
 
-        assertEquals(res, Mean.mad(arr, arr.length), 0.00001);
+        assertEquals(res, Mean.mad(arr), 0.00001);
     }
 
 }

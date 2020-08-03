@@ -24,7 +24,7 @@ import gui.MultiVariableEquation;
  * @author Wing-Fei Jason Tiu 40048495
  */
 
-public class Mean {
+public class Mean implements MultiVariableEquation {
 	
 	/*Implement this class by calling Mean.mad(array, array.length)*/
 

@@ -407,11 +407,14 @@ public class CalculatorGUI implements ActionListener {
         	
         }
         double num = Double.parseDouble(text);
+		
+        
         double res = num;
         
         if(command.equals("equals")) {
         	
         	switch(currentType) {
+        		
         		case TWO:
         			double numA = inputs.get(0);
         			double numB = num;
@@ -492,14 +495,14 @@ public class CalculatorGUI implements ActionListener {
 	        case TWO:
 	        	currentType = eq;
 	        	inputs.add(0, num);
-            	numberInput.setText("");
+            	numberInput.setText("0");
             	toggleAllFunctionButtons(false);
 	        	
 	        	break;
 	        case MULTI:
 	        	currentType = eq;
 	        	inputs.add(num);
-	        	numberInput.setText("");
+	        	numberInput.setText("0");
 	        	toggleOtherFunctionButtons(currentOperation,false);
 	        	break;
         }

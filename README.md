@@ -24,7 +24,7 @@ MAD and σ
 1. Select input.
 2. Select function. 
 3. Select next input.
-4. To add onto your list of inputs select 'Next' button and repeat Step 3 and 4. \\ Otherwise Press =
+4. To add onto your list of inputs select 'Next' button and repeat Step 3 and 4. Otherwise Press =
 5. Observe display screen
 
 

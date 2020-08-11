@@ -14,6 +14,12 @@ package function;
 
 import Exceptions.*;
 
+/**
+ * This class calculates the transcendental function e raised to the power x.
+ * This functions uses the Taylor Series Algorithm and Honers rule to appromximate the root
+ * @version 24 July 2020
+ * @author Thuyohn Thurai Sivagnanam 40044860
+ */
 public class EPower {
 	
     /**

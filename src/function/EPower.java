@@ -17,6 +17,8 @@ import gui.OneVariableEquation;
 
 public class EPower implements OneVariableEquation{
 	
+	/*Implement this class by calling ePower(double exponent)*/
+	
     /**
      * Function that calculates the exponential of the constant e
      * @author Thuyohn Thurai Sivagnanam

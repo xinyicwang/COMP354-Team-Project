@@ -163,7 +163,7 @@ class TestCalculatorApp {
 	@Test
 	void test3XY() throws InvalidInputException{
 		Exponentiation calculator = new Exponentiation();
-		assertEquals(Math.pow(2, -1), calculator.calculatePower(2.2, -1), DELTA);
+		assertEquals(Math.pow(2.2, -1), calculator.calculatePower(2.2, -1), DELTA);
 	}
 
 	/**
@@ -174,7 +174,7 @@ class TestCalculatorApp {
 	@Test
 	void test4XY() throws InvalidInputException{
 		Exponentiation calculator = new Exponentiation();
-		assertEquals(Math.pow(2.2, 100), calculator.calculatePower(4, 100), DELTA);
+		assertEquals(Math.pow(4, 100), calculator.calculatePower(4, 100), DELTA);
 	}
 	
 

@@ -1,3 +1,16 @@
+/*
+ * Standard deviation
+ * Team J - COMP 354
+ * Concordia University 
+ * 
+ * Version: Iteration II
+ *
+ * Due: August 10th 2020
+ * 
+ * Copyright notice
+ * Written with the inspiration of 
+ * https://stackoverflow.com/questions/19611198/finding-square-root-without-using-sqrt-function
+ */
 package function;
 
 import java.util.List;
@@ -12,19 +25,6 @@ import gui.MultiVariableEquation;
  * @author Cindy Wang 40181985
  */
 
-/*
- * Standard deviation
- * Team J - COMP 354
- * Concordia University 
- * 
- * Version: Iteration II
- *
- * Due: August 10th 2020
- * 
- * Copyright notice
- * Written with the inspiration of 
- * https://stackoverflow.com/questions/19611198/finding-square-root-without-using-sqrt-function
- */
 public class StandardDeviation implements MultiVariableEquation {
 
     /** 

@@ -35,4 +35,4 @@ MAD and σ
 ### Clearing Screen
 
 - Press Clear to clear all input.
-- Press CE to clear the latest input given in a multi-variable function, keeping its history(function and previous inputs).
+- Press CE to clear the latest input given in a multi-variable function, keeping its history (function and previous inputs).

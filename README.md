@@ -4,14 +4,14 @@ Comp 354 ETERNITY Team J
 Overleaf documentation [Here]()
 # Instructions on How to use the Program
 
-## Single Variable Functions
+### Single Variable Functions
 
-Includessin(x),e^x,π^x
+Includes sin(x),e^x,π^x
 1.  Select desired input.
 2.  Select desired function.
 3.  Observe display screen.
 
-## Multi-Variable Functions
+### Multi-Variable Functions
 
 x^y
 

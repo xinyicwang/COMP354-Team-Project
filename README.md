@@ -29,11 +29,11 @@ MAD and σ
 5. Observe display screen
 
 
-## Specifying Input
+### Specifying Input
 - Select the decimal button when creating a decimal input.
 - Select +/- to alternate between making input positive or negative
 
-## Clearing Screen
+### Clearing Screen
 
 - Press Clear to clear all input.
 - Press CE to clear the latest input given in a multi-variable function, keeping its history(function and previous inputs).

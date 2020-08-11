@@ -15,7 +15,7 @@ Includes sin(x), e^x, π^x
 x^y
 
 1. Select input for base.
-2. Select $x^y$ function. 
+2. Select x^y function. 
 3. Select input for exponent.
 4. Press =
 5. Observe display screen.

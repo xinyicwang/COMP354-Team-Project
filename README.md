@@ -5,7 +5,7 @@ Comp 354 ETERNITY Team J
 
 ### Single Variable Functions
 
-Includes sin(x),e^x,π^x
+Includes sin(x), e^x, π^x
 1.  Select desired input.
 2.  Select desired function.
 3.  Observe display screen.
